@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>后台管理系统-主内容</title>
+	<link href="/css/common.css" rel="stylesheet" type="text/css" />
+	<link href="/css/main.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="/js/jquery/jquery-1.8.0.min.js"></script>
+	<script type="text/javascript" src="/js/common.js"></script>
+	<script type="text/javascript" src="/js/main.js"></script>
+</head>
+
+<body>
+	<div class="mainDiv">
+		<div class="breadCrumb">
+			<input type="button" class="backBtn" value="返回" />
+			<input type="button" class="forwardBtn" value="前进" />
+			<input type="button" class="refreshBtn" value="刷新" />&nbsp;&nbsp;&nbsp;&nbsp;
+			站点管理 -> <a href="/script/siteCfg.php">站点配置</a>
+		</div>
+		<div class="main main-siteCfg">
+			<fieldset id="siteCfg">
+		    	<legend>站点配置</legend>
+	    		站点标题：<input type="text" name="title" class="title" value="{$siteCfgs['siteCfg']['data']['title']}" /><br />
+	    		副标题：<input type="text" name="subTitle" class="subTitle" value="{$siteCfgs['siteCfg']['data']['subTitle']}" /><br />
+	    		logo文件名：<input type="text" name="logoFile" class="logoFile" value="{$siteCfgs['siteCfg']['data']['logoFile']}" /><br />
+	    		<input type="button" name="siteCfg" class="CfgBtn" value="提交" />
+		  	</fieldset>
+
+		  	<fieldset id="cacheCfg">
+		    	<legend>缓存配置</legend>
+	    		缓存时间（秒）：<input type="text" name="expireTime" class="expireTime" value="{$siteCfgs['cacheCfg']['data']['expireTime']}" /><br />
+	    		<input type="button" name="cacheCfg" class="CfgBtn" value="提交" />
+		  	</fieldset>
+
+		  	<fieldset id="crightCfg">
+		    	<legend>底部copyright</legend>
+	    		copyright：<input type="text" name="cright" class="cright" value="{$siteCfgs['crightCfg']['data']['cright']}" /><br />
+	    		<input type="button" name="crightCfg" class="CfgBtn" value="提交" />
+		  	</fieldset>
+		</div>
+	</div>
+</body>
+</html>

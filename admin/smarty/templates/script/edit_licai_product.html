@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>后台管理系统-主内容</title>
+	<link href="/css/common.css" rel="stylesheet" type="text/css" />
+	<link href="/css/main.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="/js/jquery/jquery-1.8.0.min.js"></script>
+	<script type="text/javascript" src="/js/common.js"></script>
+	<script type="text/javascript" src="/js/main.js"></script>
+</head>
+
+<body>
+	<div class="mainDiv">
+		<div class="breadCrumb">
+			<input type="button" class="backBtn" value="返回" />
+			<input type="button" class="forwardBtn" value="前进" />
+			<input type="button" class="refreshBtn" value="刷新" />&nbsp;&nbsp;&nbsp;&nbsp;
+			站点管理 -> 理财产品编辑
+		</div>
+		<div class="main main-edit-licai_product">
+			<fieldset id="edit-licai_product">
+		    	<legend>理财产品编辑</legend>
+		    		<input type="hidden" name="id" class="id" value="{$licai_product['id']}" />
+	    		产品类型：<input type="text" name="type" class="type" value="{$licai_product['type']}" /><br />
+	    		风险类型：<input type="text" name="type" class="type" value="{$licai_product['risk']}" /><br />
+	    		公司名称：<input type="text" name="type" class="type" value="{$licai_product['company_name']}" /><br />
+	    		公司logo：<input type="text" name="type" class="type" value="{$licai_product['company_logo']}" /><br />
+	    		产品名称：<input type="text" name="type" class="type" value="{$licai_product['name']}" /><br />
+	    		收益率：<input type="text" name="type" class="type" value="{$licai_product['profit_rate']}" /><br />
+	    		收益类型：<input type="text" name="type" class="type" value="{$licai_product['profit_type']}" /><br />
+	    		周期：<input type="text" name="type" class="type" value="{$licai_product['cycle']}" /><br />
+	    		起始金额：<input type="text" name="type" class="type" value="{$licai_product['start_money']}" /><br />
+	    		起始单位：<input type="text" name="type" class="type" value="{$licai_product['start_unit']}" /><br />
+	    		截止日期：<input type="text" name="type" class="type" value="{$licai_product['end_time']}" /><br />
+	    		详情地址：<input type="text" name="type" class="type" value="{$licai_product['url']}" /><br />
+	    		属性：<input type="text" name="type" class="type" value="{$licai_product['attribute']}" /><br />
+	    		是否推荐：<input type="text" name="type" class="type" value="{$licai_product['is_hot']}" /><br />
+	    		推荐指数：<input type="text" name="type" class="type" value="{$licai_product['hot_level']}" /><br />
+
+	    		<input type="button" name="edit-licai_product" class="submit_licai_product" value="提交" />
+	    		<input type="button" name="edit-licai_product" class="cancel_submit_licai_product" value="取消" />
+		  	</fieldset>
+		</div>
+	</div>
+</body>
+</html>

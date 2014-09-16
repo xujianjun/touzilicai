@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>后台管理系统-主内容</title>
+	<link href="/umeditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+	<link href="/css/common.css" rel="stylesheet" type="text/css" />
+	<link href="/css/main.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="/js/jquery/jquery-1.8.0.min.js"></script>
+	<script type="text/javascript" src="/umeditor/umeditor.config.js"></script>
+    <script type="text/javascript" src="/umeditor/umeditor.min.js"></script>
+    <script type="text/javascript" src="/umeditor/lang/zh-cn/zh-cn.js"></script>
+	<script type="text/javascript" src="/js/common.js"></script>
+	<script type="text/javascript" src="/js/main.js"></script>
+</head>
+
+<body>
+	<div class="mainDiv">
+		<div class="breadCrumb">
+			<input type="button" class="backBtn" value="返回" />
+			<input type="button" class="forwardBtn" value="前进" />
+			<input type="button" class="refreshBtn" value="刷新" />&nbsp;&nbsp;&nbsp;&nbsp;
+			站点管理 -> 文章编辑
+		</div>
+		<div class="main main-edit-article">
+			<fieldset id="edit-article">
+		    	<legend>文章编辑</legend>
+		    		<input type="hidden" name="id" class="id" value="{$article['id']}" />
+	    		标题：<input type="text" name="title" class="title" value="{$article['title']}" /><br />
+	    		内容：<script type="text/plain" id="content_editor" class="content" style="width:90%;height:240px;">{$article['content']}</script><br />
+	    		分类：<select name="category" class="category">
+	    				{foreach $categories as $category}
+	    				<option value="{$category['id']}" {if $article['cid']==$category['id']}selected{/if}>{$category['title']}</option>
+	    				{/foreach}
+	    			</select><br />
+	    		标签：
+					<div class="tagSelects">
+						<div class="leftSelect">
+							<select name="tag" id="tagLeft" class="tag tagSelect" multiple="multiple">
+								{foreach $article['tags'] as $tag}
+								<option value="{$tag['id']}">{$tag['name']}</option>
+			    				{/foreach}
+							</select>
+						</div>
+						<div class="tagBtns">
+							<input type="button" id="btnToLeft" onclick="tagToLeft();" value="左移" title="左移选中"/><br />
+							<input type="button" id="btnToRight" onclick="tagToRight();" value="右移" title="右移选中"/>
+						</div>
+						<div class="rightSelect">
+							<select name="tag" id="tagRight" class="tagSelect" multiple="multiple">
+								{foreach $unselectedTags as $tag}
+			    				<option value="{$tag['id']}">{$tag['name']}</option>
+			    				{/foreach}
+							</select>
+						</div>
+						<div class="clear"></div>
+					</div>
+	    		<input type="button" name="edit-article" class="submit_article" value="提交" />
+	    		<input type="button" name="edit-article" class="cancel_submit_article" value="取消" />
+		  	</fieldset>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+	//实例化编辑器
+	var um = UM.getEditor('content_editor');
+	</script>
+
+</body>
+</html>

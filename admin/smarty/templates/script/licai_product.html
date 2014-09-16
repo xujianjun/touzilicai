@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>后台管理系统-主内容</title>
+	<link href="/css/common.css" rel="stylesheet" type="text/css" />
+	<link href="/css/main.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="/js/jquery/jquery-1.8.0.min.js"></script>
+	<script type="text/javascript" src="/js/common.js"></script>
+	<script type="text/javascript" src="/js/main.js"></script>
+</head>
+
+<body>
+	<div class="mainDiv">
+		<div class="breadCrumb">
+			<input type="button" class="backBtn" value="返回" />
+			<input type="button" class="forwardBtn" value="前进" />
+			<input type="button" class="refreshBtn" value="刷新" />&nbsp;&nbsp;&nbsp;&nbsp;
+			站点管理 -> 理财产品 -> <a href="/script/licai_product.php?id={$licai_product['id']}">{$licai_product['name']}</a>
+		</div>
+		<div class="main main-licai_product">
+			<div class="items">
+				<div class="itemListTop">
+					<a target="_blank" href="/script/edit_licai_product.php?id={$licai_product['id']}">编辑</a>
+				</div>
+				<div class="licai_product">
+					<ul>
+						<li>产品类型：{$licai_product['type']}</li>
+						<li>风险类型：{$licai_product['risk']}</li>
+						<li>公司名称：{$licai_product['company_name']}</li>
+						<li>公司logo：{$licai_product['company_logo']}</li>
+						<li>产品名称：{$licai_product['name']}</li>
+						<li>收益率：{$licai_product['profit_rate']}</li>
+						<li>收益类型：{$licai_product['profit_type']}</li>
+						<li>投资周期：{$licai_product['cycle']}</li>
+						<li>起始金额：{$licai_product['start_money']}</li>
+						<li>起始单位：{$licai_product['start_unit']}</li>
+						<li>截止日期：{$licai_product['end_time']}</li>
+						<li>详情地址：{$licai_product['url']}</li>
+						<li>属性：{$licai_product['attribute']}</li>
+						<li>是否推荐：{$licai_product['is_hot']}</li>
+						<li>推荐指数：{$licai_product['hot_level']}</li>
+					</ul>
+				</div>
+		</div>
+	</div>
+</body>
+</html>

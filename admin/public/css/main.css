@@ -1,0 +1,52 @@
+
+body {background-color: #F6F6F6;}
+.welcome{padding-top:100px;text-align:center;font-size:40px;}
+.breadCrumb{padding: 10px 10px 10px 20px;border-bottom: 1px dotted #666;color:#666;}
+fieldset{margin:10px;padding:10px;}
+input[type=button]{cursor:pointer;}
+.btn{padding:2px 5px;margin:5px 10px;}
+.clear{clear:both;}
+
+table{line-height:22px;border-collapse: collapse;border-spacing: 0;}
+td, th{text-align:center;border: 1px solid #a0a9a8;word-break:break-word;}
+tr.even{background:#f0f0f0;}
+tr:hover{background:#D9E3CB;}
+
+.main-siteCfg input[type=text]{line-height:22px;width:400px;}
+input.cright{width:700px !important;}
+.editMenu{padding: 5px;}
+.editMenu input[type=text]{margin-right:10px;}
+
+.saveMenu{float:right;margin-right:5px;font-size:20px;}
+.cancel_saveMenu{float:right;margin:10px 5px 0 0;display:none;}
+
+.menuList .edit_submit, .menuList .edit_cancel{display:none;}
+.menuList input[type=text]{width:300px;}
+.main-mainMenu .menuList input[type=text]{width:230px;}
+tr.tr-top input[type=button]{background-color:blue;color:white;}
+tr.tr-top{background-color:#cacaca;}
+
+.jstree{padding:10px;};
+.jstree li{}
+
+.itemListTop{padding:5px;}
+.opt_btn{padding:5px 10px;}
+.filter{padding:5px 10px;border:1px solid #666;}
+details{padding:10px;}
+
+.pager{padding:10px;}
+.top-pager{padding:10px 0 5px 20px;}
+.bottom-pager{padding:5px 0 20px 20px;}
+
+#tag-dialog-form label, #tag-dialog-form input { display:block; }
+#tag-dialog-form input.text { margin-bottom:12px; width:95%; padding: .4em; }
+#tag-dialog-form fieldset { padding:0; border:0; margin-top:10px; }
+
+#edit-article input.title{width:400px;}
+#edit-article select.category{width:100px;}
+.article{padding:10px;}
+.tagSelects{padding-left:50px;}
+.tagSelect{float:left;width:200px;height:300px;}
+.tagBtns{float:left;width:60px;padding-top:100px;}
+.tagBtns input{margin:10px 10px 0;width:40px;}
+

@@ -1,0 +1,2 @@
+{{ partial("widget/search_header", ['search_header':pageData['search_header']]) }}
+{{ partial("widget/list", ['items':pageData['list']['search']['items'],'pager':pageData['list']['search']['pager']]) }}
