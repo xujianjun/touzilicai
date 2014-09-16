@@ -1,0 +1,22 @@
+
+echo '<pre>';print_r();echo '</pre>';
+
+http://www.cj356.com/
+
+sudo mount -t cifs //192.168.1.100/touzilicai /home/wwwroot/touzilicai -o username=xujianjun,password=123456,rw,file_mode=0777,dir_mode=0777,noserverino
+
+后台进度：
+	文章管理已完成，还未测试 doing	done
+	标签该为富文本 done
+	理财产品	已完成，还未测试 doing
+	整理数据 doing
+
+	内容管理系统	undone
+
+
+前台进度：
+	学堂首页，目录页，文章页
+
+
+
+
