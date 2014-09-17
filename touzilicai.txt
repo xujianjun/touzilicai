@@ -20,5 +20,9 @@ sudo mount -t cifs //192.168.1.100/touzilicai /home/wwwroot/touzilicai -o userna
 	学堂首页，目录页，文章页
 
 
+select td.*,ts.* from tree_data td left join tree_struct ts on td.id=ts.id where ts.id is null
 
+select ts.*,td.* from tree_struct ts left join tree_data td on ts.id=td.id where td.id is NULL
+
+delete from tree_struct where id in (select ts.id from tree_struct ts left join tree_data td on ts.id=td.id where td.id is NULL)
 
