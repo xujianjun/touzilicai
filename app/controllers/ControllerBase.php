@@ -76,20 +76,28 @@ class ControllerBase extends Phalcon\Mvc\Controller {
 		$siteConfig['blockCfg'] = array('data' => array(
 											'slider_home' => array(array('nid'=>29, 'title'=>'投资案例')),
 											'slider_school' => array(array('nid'=>9, 'title'=>'财经学堂')),
-											'listGroup_wealth_plan' => array(array('nid'=>30, 'title'=>'理财规划')),
+											//'listGroup_wealth_plan' => array(array('nid'=>30, 'title'=>'理财规划')),
 											'navTab_school_stock_fund' => array(array('nid'=>17, 'title'=>'股票学堂'), array('nid'=>18, 'title'=>'基金学堂')),
 											'navTab_school_forex_bank' => array(array('nid'=>19, 'title'=>'外汇学堂'), array('nid'=>20, 'title'=>'银行学堂')),
 											'navTab_school_spot_futures' => array(array('nid'=>22, 'title'=>'现货学堂'), array('nid'=>23, 'title'=>'期货学堂')),
-											'navTab_trade_basic_tech' => array(array('nid'=>26, 'title'=>'基本面分析'), array('nid'=>27, 'title'=>'技术面分析')),
-											'panel_wealth_product' => array(array('nid'=>8, 'title'=>'互联网金融')),
+											//'navTab_trade_basic_tech' => array(array('nid'=>26, 'title'=>'基本面分析'), array('nid'=>27, 'title'=>'技术面分析')),
+											//'panel_wealth_product' => array(array('nid'=>8, 'title'=>'互联网金融')),
 											'panel_internet_licai' => array(array('nid'=>13, 'title'=>'互联网理财')),
 											'panel_internet_p2p' => array(array('nid'=>14, 'title'=>'p2p网贷')),
 											'panel_internet_bank' => array(array('nid'=>15, 'title'=>'银行理财')),
 											'panel_internet_fund' => array(array('nid'=>16, 'title'=>'基金理财')),
+											'panel_internet_insurance' => array(array('nid'=>66, 'title'=>'保险理财')),
 											'panel_school_insurance' => array(array('nid'=>21, 'title'=>'保险学堂')),
 											'panel_school_metal' => array(array('nid'=>24, 'title'=>'贵金属学堂')),
 											'panel_school_gold' => array(array('nid'=>25, 'title'=>'黄金学堂')),
+											'panel_trade_basic' => array(array('nid'=>26, 'title'=>'基本面分析')),
+											'panel_trade_tech' => array(array('nid'=>27, 'title'=>'技术面分析')),
 											'panel_trade_master' => array(array('nid'=>28, 'title'=>'大师攻略')),
+
+											'panel_wealth_story' => array(array('nid'=>29, 'title'=>'投资案例')),
+											'panel_wealth_plan' => array(array('nid'=>30, 'title'=>'理财规划')),
+											'panel_wealth_product' => array(array('nid'=>31, 'title'=>'产品评测')),
+
 
 											'navTab_stockSchool_basic_method' => array(array('nid'=>34, 'title'=>'基础知识'), array('nid'=>36, 'title'=>'操盘攻略')),
 											'panel_stockSchool_trade' => array(array('nid'=>35, 'title'=>'交易指南')),
@@ -582,10 +590,7 @@ class ControllerBase extends Phalcon\Mvc\Controller {
 					$blockParams = $this->_siteConfig['blockCfg']['data'][$view.'_'.$block];
 					foreach ($blockParams as $blockParam){
 						$nodeLists = array('title'=>$blockParam['title'], 'data'=>array());
-						$blockNode = TreeStruct::findFirst(array(
-							'conditions' => "id = ?1",
-							'bind' => array(1=>$blockParam['nid'])
-						));
+						$blockNode = TreeStruct::findFirst($blockParam['nid']);
 						$temNodes = TreeStruct::find(array(
 												'conditions' => "lft>?1 and rgt<?2 and type=:type:",
 												'bind' => array(1=>$blockNode->lft, 2=>$blockNode->rgt, 'type'=>'article'),
@@ -594,7 +599,10 @@ class ControllerBase extends Phalcon\Mvc\Controller {
 											));
 						$nodes = array();
 						foreach ($temNodes as $key=>$temNode){
-							$treeData = $temNode->TreeData->toArray();
+							$treeData = array();
+							if ($temNode->TreeData){
+								$treeData = $temNode->TreeData->toArray();
+							}
 							$nodes[$key] = $temNode->toArray();
 							$nodes[$key]['TreeData'] = $treeData;
 						}
