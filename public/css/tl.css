@@ -80,8 +80,8 @@ ul{padding:0;margin:0;}
 #tl-nav .nav-dropdown-entry{line-height:34px;margin-left:25px;font-size: 14px;}
 #tl-nav .nav-dropdown-entry a{display:inline-block;color:#b20000}
 #tl-nav .channel{margin-top:16px;list-style:none;}
-#tl-nav .channel li{line-height:2em}
-#tl-nav .channel li a{height:30px;padding-left:24px;line-height:30px;color:#fff}
+#tl-nav .channel li{line-height:2em;text-align:center;}
+#tl-nav .channel li a{height:30px;line-height:30px;color:#fff}
 
 
 .tl-nav-tab .nav-justified > li.active > a{
