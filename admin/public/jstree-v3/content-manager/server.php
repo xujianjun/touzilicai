@@ -1,6 +1,7 @@
 <?php
 //error_reporting(E_ALL);
 //ini_set('display_errors', 'On');
+header("Content-type: text/html; charset=utf-8");
 
 require_once(dirname(__FILE__) . '/class.db.php');
 require_once(dirname(__FILE__) . '/class.tree.php');
