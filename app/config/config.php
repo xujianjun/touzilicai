@@ -15,6 +15,6 @@ return new \Phalcon\Config(array(
         'viewsDir'       => APP_PATH . '/app/views/',
         'libraryDir'     => APP_PATH . '/app/library/',
         'baseUri'        => '/',
-        'debug'          => true
+        'debug'          => false
     ),
 ));
