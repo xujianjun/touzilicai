@@ -89,7 +89,7 @@ function updateTreeTids($trees){
 		$new_rgt = $tree['new_rgt'];
 		$updateSql = 'update tree_struct set lft='.$new_lft.',rgt='.$new_rgt.' where id='.$tree['id'].';';
 		echo $updateSql.'<br>';
-//		mysql_query($updateSql);
+		mysql_query($updateSql);
 
 		if (isset($tree['children']) && count($tree['children'])){
 			updateTreeTids($tree['children']);
