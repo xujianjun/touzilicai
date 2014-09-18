@@ -23,11 +23,11 @@ mysql_query('insert into tree_data(title,title_en,summary,content,cid,src,src_id
 
 
 //修复lft, rgt
-/*$trees = get_trees();
+$trees = get_trees();
 regenerate_tid($trees);
-updateTreeTids($trees);*/
+updateTreeTids($trees);
 
-repair_pos();
+//repair_pos();
 
 
 //createArticleList();

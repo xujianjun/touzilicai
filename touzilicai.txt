@@ -26,3 +26,6 @@ select ts.*,td.* from tree_struct ts left join tree_data td on ts.id=td.id where
 
 delete from tree_struct where id in (select ts.id from tree_struct ts left join tree_data td on ts.id=td.id where td.id is NULL)
 
+select * from tree_struct where pid in (14,15,16,66)
+delete from tree_struct where pid in (14,15,16,66)
+
