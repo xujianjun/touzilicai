@@ -28,4 +28,4 @@ delete from tree_struct where id in (select ts.id from tree_struct ts left join 
 
 select * from tree_struct where pid in (14,15,16,66)
 delete from tree_struct where pid in (14,15,16,66)
-
+delete from tree_struct where pid in (56,58,50,54,55,48,49)
