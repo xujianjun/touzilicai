@@ -20,6 +20,9 @@ return new \Phalcon\Config(array(
         'secMenuRootNid' => 6977,
         'recommendNodeNum' => 6,
         'articleRootNid' => 2,
+        'hotNids' => '',
+        'homeSliderNids' => '',
+        'xtSliderNids' => '',
     ),
     'widgetCfg'	=> array(
     	'cidianCloudNum' => 20,
