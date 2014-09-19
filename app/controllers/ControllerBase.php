@@ -38,85 +38,10 @@ class ControllerBase extends Phalcon\Mvc\Controller {
 	}
 
 	public function _initSiteConfig(){
-		$siteConfig = array();
-		$siteConfigOri = SiteConfig::find()->toArray();
-		foreach ($siteConfigOri as $key=>$value){
-			$value['data'] = json_decode($value['data'], true);
-			if ($value['type']=='mainMenu'){
-				foreach ($value['data'] as $key2=>$value2){
-					if ($value2['link']=='/'){
-						if($_SERVER['REQUEST_URI']==$value2['link']){
-							$value['data'][$key2]['current'] = true;
-						}
-					} elseif (strpos($_SERVER['REQUEST_URI'], $value2['link'])===0){
-						$value['data'][$key2]['current'] = true;
-					}
-				}
-			}
-
-			$siteConfig[$value['type']] = $value;
-		}
-
-		//
-
-		$siteConfig['nodeCfg'] = array('data' => array(
-											'menuRootNid' => 6975,
-											'mainMenuRootNid' => 2,
-											'secMenuRootNid' => 6977,
-											'recommendNodeNum' => 6,
-											'articleRootNid' => 2,
-										));
-
-		$siteConfig['widgetCfg'] = array('data' => array(
-											'cidianCloudNum' => 20,
-											'tagNodesNum' => 20,
-											'listItemPer' => 20,
-											'blockNum' => 6,
-										));
-		$siteConfig['blockCfg'] = array('data' => array(
-											'slider_home' => array(array('nid'=>29, 'title'=>'投资案例')),
-											'slider_school' => array(array('nid'=>9, 'title'=>'财经学堂')),
-											//'listGroup_wealth_plan' => array(array('nid'=>30, 'title'=>'理财规划')),
-											'navTab_school_stock_fund' => array(array('nid'=>17, 'title'=>'股票学堂'), array('nid'=>18, 'title'=>'基金学堂')),
-											'navTab_school_forex_bank' => array(array('nid'=>19, 'title'=>'外汇学堂'), array('nid'=>20, 'title'=>'银行学堂')),
-											'navTab_school_spot_futures' => array(array('nid'=>22, 'title'=>'现货学堂'), array('nid'=>23, 'title'=>'期货学堂')),
-											//'navTab_trade_basic_tech' => array(array('nid'=>26, 'title'=>'基本面分析'), array('nid'=>27, 'title'=>'技术面分析')),
-											//'panel_wealth_product' => array(array('nid'=>8, 'title'=>'互联网金融')),
-											'panel_internet_licai' => array(array('nid'=>13, 'title'=>'互联网理财')),
-											'panel_internet_p2p' => array(array('nid'=>14, 'title'=>'p2p网贷')),
-											'panel_internet_bank' => array(array('nid'=>15, 'title'=>'银行理财')),
-											'panel_internet_fund' => array(array('nid'=>16, 'title'=>'基金理财')),
-											'panel_internet_insurance' => array(array('nid'=>66, 'title'=>'保险理财')),
-											'panel_school_insurance' => array(array('nid'=>21, 'title'=>'保险学堂')),
-											'panel_school_metal' => array(array('nid'=>24, 'title'=>'贵金属学堂')),
-											'panel_school_gold' => array(array('nid'=>25, 'title'=>'黄金学堂')),
-											'panel_trade_basic' => array(array('nid'=>26, 'title'=>'基本面分析')),
-											'panel_trade_tech' => array(array('nid'=>27, 'title'=>'技术面分析')),
-											'panel_trade_master' => array(array('nid'=>28, 'title'=>'大师攻略')),
-
-											'panel_wealth_story' => array(array('nid'=>29, 'title'=>'投资案例')),
-											'panel_wealth_plan' => array(array('nid'=>30, 'title'=>'理财规划')),
-											'panel_wealth_product' => array(array('nid'=>31, 'title'=>'产品评测')),
-
-
-											'navTab_stockSchool_basic_method' => array(array('nid'=>34, 'title'=>'基础知识'), array('nid'=>36, 'title'=>'操盘攻略')),
-											'panel_stockSchool_trade' => array(array('nid'=>35, 'title'=>'交易指南')),
-											'panel_fundSchool_basic' => array(array('nid'=>37, 'title'=>'基金入门')),
-											'navTab_fundSchool_open_close' => array(array('nid'=>38, 'title'=>'开放式基金'), array('nid'=>39, 'title'=>'封闭式基金')),
-											'panel_fundSchool_money' => array(array('nid'=>40, 'title'=>'货币基金')),
-											'panel_fundSchool_trade' => array(array('nid'=>41, 'title'=>'基金技巧')),
-											'panel_forexSchool_basic' => array(array('nid'=>42, 'title'=>'外汇入门')),
-											'panel_forexSchool_trade' => array(array('nid'=>43, 'title'=>'炒汇技巧')),
-											'panel_metalSchool_basic' => array(array('nid'=>56, 'title'=>'基础知识')),
-											'panel_metalSchool_trade' => array(array('nid'=>58, 'title'=>'投资技巧')),
-											'panel_otherSchool_bank' => array(array('nid'=>20, 'title'=>'银行学堂')),
-											'panel_otherSchool_insurance' => array(array('nid'=>21, 'title'=>'保险学堂')),
-											'navTab_otherSchool_spot_futures' => array(array('nid'=>22, 'title'=>'现货学堂'), array('nid'=>23, 'title'=>'期货学堂')),
-											'panel_otherSchool_gold' => array(array('nid'=>25, 'title'=>'黄金学堂')),
-										));
-
+		$siteConfig = include APP_PATH . "/app/config/siteconfig.php";
+		$siteConfig = $siteConfig->toArray();
 		$this->_siteConfig = $siteConfig;
-//		echo '<pre>';print_r($siteConfig);echo '</pre>';
+//		echo '<pre>';print_r($siteConfig);echo '</pre>';die();
 		$this->view->setVar("siteConfig", $siteConfig);
 	}
 	public function _initParams(){
@@ -205,9 +130,9 @@ class ControllerBase extends Phalcon\Mvc\Controller {
 
 	public function _initMenu(){
 		$menus = array('mainMenu'=>array(), 'secMenu'=>array());
-		$mainMenuRootNid = $this->_siteConfig['nodeCfg']['data']['mainMenuRootNid'];
-		$secMenuRootNid = $this->_siteConfig['nodeCfg']['data']['secMenuRootNid'];
-		$recommendNodeNum = $this->_siteConfig['nodeCfg']['data']['recommendNodeNum'];
+		$mainMenuRootNid = $this->_siteConfig['nodeCfg']['mainMenuRootNid'];
+		$secMenuRootNid = $this->_siteConfig['nodeCfg']['secMenuRootNid'];
+		$recommendNodeNum = $this->_siteConfig['nodeCfg']['recommendNodeNum'];
 
 		//一级菜单
 		$mainMenuRootNode = TreeStruct::findFirst($mainMenuRootNid);
@@ -349,8 +274,8 @@ class ControllerBase extends Phalcon\Mvc\Controller {
 		$widgetData = array();
 
 		$blockCfgKey = $block ? $view.'_'.$block : $view;
-		$blockCfg = $this->_siteConfig['blockCfg']['data'][$blockCfgKey];
-		$blockNum = $this->_siteConfig['widgetCfg']['data']['blockNum'];
+		$blockCfg = $this->_siteConfig['blockCfg'][$blockCfgKey];
+		$blockNum = $this->_siteConfig['widgetCfg']['blockNum'];
 		switch ($view){
 			case 'slider': //理财故事
 				switch ($block){
@@ -432,7 +357,7 @@ class ControllerBase extends Phalcon\Mvc\Controller {
 				}
 				break;
 			case 'cidian':
-				$cidianCloudNum = $this->_siteConfig['widgetCfg']['data']['cidianCloudNum'];
+				$cidianCloudNum = $this->_siteConfig['widgetCfg']['cidianCloudNum'];
 				$tags = Tags::fetchCidiansCloud($cidianCloudNum);
 				$widgetData = $tags;
 				break;
@@ -442,7 +367,7 @@ class ControllerBase extends Phalcon\Mvc\Controller {
 				break;
 			case 'taglist':
 				$taglist = array();
-				$itemPer = $this->_siteConfig['widgetCfg']['data']['listItemPer'];
+				$itemPer = $this->_siteConfig['widgetCfg']['listItemPer'];
 				$start = ($this->_params['p']-1)*$itemPer;
 
 				if ($this->_params['tagPrefix']){
@@ -481,7 +406,7 @@ class ControllerBase extends Phalcon\Mvc\Controller {
 				switch ($block){
 					case 'node':
 						$nodeLists = array();
-						$itemPer = $this->_siteConfig['widgetCfg']['data']['listItemPer'];
+						$itemPer = $this->_siteConfig['widgetCfg']['listItemPer'];
 						$start = ($this->_params['p']-1)*$itemPer;
 						$temNodes = TreeStruct::find(array(
 										'conditions' => 'lft>?1 and rgt<?2 and type=:type:',
@@ -516,7 +441,7 @@ class ControllerBase extends Phalcon\Mvc\Controller {
 						$widgetData[$block] = $nodeLists;
 						break;
 					case 'tagnode':
-						$tagNodesNum = $this->_siteConfig['widgetCfg']['data']['tagNodesNum'];
+						$tagNodesNum = $this->_siteConfig['widgetCfg']['tagNodesNum'];
 						$nodeLists = array();
 						if ($tid = $this->_params['tid']){
 							$tagNodes = NodeTags::find(array(
@@ -540,7 +465,7 @@ class ControllerBase extends Phalcon\Mvc\Controller {
 						$nodeLists = array();
 						$keyword = $this->_params['search_keyword'];
 						if ($keyword){
-							$itemPer = $this->_siteConfig['widgetCfg']['data']['listItemPer'];
+							$itemPer = $this->_siteConfig['widgetCfg']['listItemPer'];
 							$start = ($this->_params['p']-1)*$itemPer;
 							$temNodeDatas = TreeData::find(array(
 											'conditions' => 'content like :keyword:',
@@ -586,8 +511,8 @@ class ControllerBase extends Phalcon\Mvc\Controller {
 			case 'panel':
 				$widgetData[$block]['blockName'] = $block;
 				$widgetData[$block]['items'] = array();
-				if (isset($this->_siteConfig['blockCfg']['data'][$view.'_'.$block])){
-					$blockParams = $this->_siteConfig['blockCfg']['data'][$view.'_'.$block];
+				if (isset($this->_siteConfig['blockCfg'][$view.'_'.$block])){
+					$blockParams = $this->_siteConfig['blockCfg'][$view.'_'.$block];
 					foreach ($blockParams as $blockParam){
 						$nodeLists = array('title'=>$blockParam['title'], 'data'=>array());
 						$blockNode = TreeStruct::findFirst($blockParam['nid']);

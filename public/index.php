@@ -1,8 +1,11 @@
 <?php
-
-//error_reporting(E_ERROR | E_WARNING | E_PARSE);
-//ini_set('display_errors', 'On');
 header("Content-type: text/html; charset=utf-8");
+
+if (isset($_GET['debug']) && $_GET['debug']=='licaimap'){
+	error_reporting(E_ALL);
+	ini_set('display_errors', 'On');
+}
+
 if (!isset($_GET['_url'])) {
     $_GET['_url'] = '/';
 }
@@ -12,6 +15,10 @@ define('APP_PATH', realpath('..'));
  * Read the configuration
  */
 $config = include APP_PATH . "/app/config/config.php";
+
+if (isset($_GET['debug']) && $_GET['debug']=='licaimap'){
+	$config->application->debug=true;
+}
 
 /**
  * Include the loader

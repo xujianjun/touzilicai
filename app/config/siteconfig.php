@@ -1,0 +1,65 @@
+<?php
+
+return new \Phalcon\Config(array(
+    'siteCfg'	=> array(
+        'title'  	=> '慧学网',
+        'subTitle'  => '您的理财知识库',
+        'logoFile' 	=> APP_PATH . '/public/img/logo.png',
+    ),
+    'cacheCfg' 	=> array(
+        'expireTime' => 3600,
+    ),
+    'footerCft'	=> array(
+    	'cright'	=> 'CopyRight © 2014 <a target="_blank" href="http://www.miitbeian.gov.cn/">鲁ICP备14026710号-1</a> 慧学屋',
+    	'contentFrom'	=> '本站资源多收集于网络,版权归原作者所有,若有侵权,请联系我们. admin@licaimap.com',
+    	'tips'		=> '声明：本站发布的所有资料或图片仅仅用于学习与交流，投资者依据本网站提供的内容进行投资所造成的盈亏与本网站无关。',
+    ),
+    'nodeCfg'	=> array(
+		'menuRootNid' => 6975,
+        'mainMenuRootNid' => 2,
+        'secMenuRootNid' => 6977,
+        'recommendNodeNum' => 6,
+        'articleRootNid' => 2,
+    ),
+    'widgetCfg'	=> array(
+    	'cidianCloudNum' => 20,
+        'tagNodesNum' => 20,
+        'listItemPer' => 20,
+        'blockNum' => 6,
+    ),
+    'blockCfg'	=> array(
+    	'slider_home' => array(array('nid' => 29,'title' => '投资案例')),
+        'slider_school' => array(array('nid' => 9,'title' => '财经学堂'),)
+        'navTab_school_stock_fund' => array(array('nid' => 17,'title' => '股票学堂'),array('nid' => 18,'title' => '基金学堂')),
+        'navTab_school_forex_bank' => array(array('nid' => 19,'title' => '外汇学堂'),array('nid' => 20,'title' => '银行学堂')),
+        'navTab_school_spot_futures' => array(array('nid' => 22,'title' => '现货学堂'),array('nid' => 23,'title' => '期货学堂')),
+        'panel_internet_licai' => array(array('nid' => 13,'title' => '互联网理财')),
+        'panel_internet_p2p' => array(array('nid' => 14,'title' => 'p2p网贷')),
+        'panel_internet_bank' => array(array('nid' => 15,'title' => '银行理财')),
+        'panel_internet_fund' => array(array('nid' => 16,'title' => '基金理财')),
+        'panel_internet_insurance' => array(array('nid' => 66,'title' => '保险理财')),
+        'panel_school_insurance' => array(array('nid' => 21,'title' => '保险学堂')),
+        'panel_school_metal' => array(array('nid' => 24,'title' => '贵金属学堂')),
+        'panel_school_gold' => array(array('nid' => 25,'title' => '黄金学堂')),
+        'panel_trade_basic' => array(array('nid' => 26,'title' => '基本面分析')),
+        'panel_trade_tech' => array(array('nid' => 27,'title' => '技术面分析')),
+        'panel_trade_master' => array(array('nid' => 28,'title' => '大师攻略')),
+        'panel_wealth_story' => array(array('nid' => 29,'title' => '投资案例')),
+        'panel_wealth_plan' => array(array('nid' => 30,'title' => '理财规划')),
+        'panel_wealth_product' => array(array('nid' => 31,'title' => '产品评测')),
+        'navTab_stockSchool_basic_method' => array(array('nid' => 34,'title' => '基础知识'),array('nid' => 36,'title' => '操盘攻略')),
+        'panel_stockSchool_trade' => array(array('nid' => 35,'title' => '交易指南')),
+        'panel_fundSchool_basic' => array(array('nid' => 37,'title' => '基金入门')),
+        'navTab_fundSchool_open_close' => array(array('nid' => 38,'title' => '开放式基金'),array('nid' => 39,'title' => '封闭式基金')),
+        'panel_fundSchool_money' => array(array('nid' => 40,'title' => '货币基金')),
+        'panel_fundSchool_trade' => array(array('nid' => 41,'title' => '基金技巧')),
+        'panel_forexSchool_basic' => array(array('nid' => 42,'title' => '外汇入门')),
+        'panel_forexSchool_trade' => array(array('nid' => 43,'title' => '炒汇技巧')),
+        'panel_metalSchool_basic' => array(array('nid' => 56,'title' => '基础知识')),
+        'panel_metalSchool_trade' => array(array('nid' => 58,'title' => '投资技巧')),
+        'panel_otherSchool_bank' => array(array('nid' => 20,'title' => '银行学堂')),
+        'panel_otherSchool_insurance' => array(array('nid' => 21,'title' => '保险学堂')),
+        'navTab_otherSchool_spot_futures' => array(array('nid' => 22,'title' => '现货学堂'),array('nid' => 23,'title' => '期货学堂')),
+        'panel_otherSchool_gold' => array(array('nid' => 25,'title' => '黄金学堂')),
+    )
+));
