@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-06-27 17:23:55
+<?php /* Smarty version Smarty-3.1.18, created on 2014-09-19 10:57:07
          compiled from "/home/wwwroot/vm-gw/touzilicai/admin/smarty/templates/script/articles.html" */ ?>
 <?php /*%%SmartyHeaderCode:207730437853ace1377433a7-71292604%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'a8e0b9f4f490fb83b33aa67826b46122f1e3b4a6' => 
     array (
       0 => '/home/wwwroot/vm-gw/touzilicai/admin/smarty/templates/script/articles.html',
-      1 => 1403861055,
+      1 => 1410924423,
       2 => 'file',
     ),
   ),
@@ -46,7 +46,12 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
 <body>
 	<div class="mainDiv">
-		<div class="breadCrumb">站点管理 -> <a href="/script/article.php">文章管理</a></div>
+		<div class="breadCrumb">
+			<input type="button" class="backBtn" value="返回" />
+			<input type="button" class="forwardBtn" value="前进" />
+			<input type="button" class="refreshBtn" value="刷新" />&nbsp;&nbsp;&nbsp;&nbsp;
+			站点管理 -> <a href="/script/article.php">文章管理</a>
+		</div>
 		<div class="main main-articles">
 			<div class="items">
 				<div class="itemListTop">
