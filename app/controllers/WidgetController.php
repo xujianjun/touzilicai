@@ -8,6 +8,7 @@ class WidgetController extends ControllerBase
 	public function initialize() {
 		$this->_demo = true;
 		parent::initialize();
+		$this->view->setVar("bdtongji", false);
 	}
 
 	public function indexAction(){

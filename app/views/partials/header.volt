@@ -18,7 +18,7 @@
 	<!--导航-->
 	<div class="header-nav">
 	<ul id="tl-nav">
-		<li class="nav-item">
+		<li class="nav-item {% if server['REQUEST_URI']=='/' %} active{% endif %}">
 			<a href="/" class="nav-link">首页</a>
 		</li>
 		{% for menu in menus['mainMenu'] %}

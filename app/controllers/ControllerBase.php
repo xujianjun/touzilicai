@@ -28,7 +28,8 @@ class ControllerBase extends Phalcon\Mvc\Controller {
 		$this->_initSiteConfig();
 		$this->_initParams();
 		$this->_initMenu();
-//		$this->view->setVar("server", $_SERVER);
+		$this->view->setVar("server", $_SERVER);
+		$this->view->setVar("bdtongji", true);
 	}
 
 	public function _initLibrary(){
@@ -278,28 +279,34 @@ class ControllerBase extends Phalcon\Mvc\Controller {
 		$blockNum = $this->_siteConfig['widgetCfg']['blockNum'];
 		switch ($view){
 			case 'slider': //理财故事
+			case 'btslider':
+				$widgetData[$block]['blockName'] = $block;
 				switch ($block){
 					case 'home':
 						$widgetData[$block]['items'] = array(
 									array(
 										'title' => '<strong>This1</strong> is an example of a <em>HTML</em> caption with <a href="#">a link</a>.',
-										'img_path' => '/img/slider/toystory_358-270.jpg',
-										'link' => '/slider1.html'
+										'img_path' => '/img/slider/toystory_358-287.jpg',
+										'link' => '/slider1.html',
+										'alt' => ''
 									),
 									array(
 										'title' => '<strong>This2</strong> is an example of a <em>HTML</em> caption with <a href="#">a link</a>.',
-										'img_path' => '/img/slider/up_358-270.jpg',
-										'link' => '/slider2.html'
+										'img_path' => '/img/slider/up_358-287.jpg',
+										'link' => '/slider2.html',
+										'alt' => ''
 									),
 									array(
 										'title' => '<strong>This3</strong> is an example of a <em>HTML</em> caption with <a href="#">a link</a>.',
-										'img_path' => '/img/slider/walle_358-270.jpg',
-										'link' => '/slider3.html'
+										'img_path' => '/img/slider/walle_358-287.jpg',
+										'link' => '/slider3.html',
+										'alt' => ''
 									),
 									array(
 										'title' => '<strong>This4</strong> is an example of a <em>HTML</em> caption with <a href="#">a link</a>.',
-										'img_path' => '/img/slider/nemo_358-270.jpg',
-										'link' => '/slider4.html'
+										'img_path' => '/img/slider/nemo_358-287.jpg',
+										'link' => '/slider4.html',
+										'alt' => ''
 									),
 								);
 						break;
@@ -308,22 +315,26 @@ class ControllerBase extends Phalcon\Mvc\Controller {
 									array(
 										'title' => '<strong>This1</strong> is an example of a <em>HTML</em> caption with <a href="#">a link</a>.',
 										'img_path' => '/img/slider/toystory.jpg',
-										'link' => '/slider1.html'
+										'link' => '/slider1.html',
+										'alt' => ''
 									),
 									array(
 										'title' => '<strong>This2</strong> is an example of a <em>HTML</em> caption with <a href="#">a link</a>.',
 										'img_path' => '/img/slider/up.jpg',
-										'link' => '/slider2.html'
+										'link' => '/slider2.html',
+										'alt' => ''
 									),
 									array(
 										'title' => '<strong>This3</strong> is an example of a <em>HTML</em> caption with <a href="#">a link</a>.',
 										'img_path' => '/img/slider/walle.jpg',
-										'link' => '/slider3.html'
+										'link' => '/slider3.html',
+										'alt' => ''
 									),
 									array(
 										'title' => '<strong>This4</strong> is an example of a <em>HTML</em> caption with <a href="#">a link</a>.',
 										'img_path' => '/img/slider/nemo.jpg',
-										'link' => '/slider4.html'
+										'link' => '/slider4.html',
+										'alt' => ''
 									),
 								);
 						break;
@@ -509,6 +520,7 @@ class ControllerBase extends Phalcon\Mvc\Controller {
 			case 'listGroup':
 			case 'navTab':
 			case 'panel':
+			case 'panel2':
 				$widgetData[$block]['blockName'] = $block;
 				$widgetData[$block]['items'] = array();
 				if (isset($this->_siteConfig['blockCfg'][$view.'_'.$block])){

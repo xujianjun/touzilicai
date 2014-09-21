@@ -1,6 +1,6 @@
 
 <div class="row">
-    <div class="col-xs-6 col-md-4">{{ partial("widget/slider", ['items':pageData['slider']['home']['items']]) }}</div>
+    <div class="col-xs-6 col-md-4">{{ partial("widget/slider", ['blockName':pageData['slider']['home']['blockName'], 'items':pageData['slider']['home']['items']]) }}</div>
     <div class="col-xs-6 col-md-4">{{ partial("widget/panel", ['items':pageData['panel']['hot']['items']]) }}</div>
 	<div class="col-xs-6 col-md-4">{{ partial("widget/cidian", ['cidian':pageData['cidian']]) }}</div>
 </div>

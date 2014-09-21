@@ -32,7 +32,7 @@ return new \Phalcon\Config(array(
     ),
     'blockCfg'	=> array(
     	'slider_home' => array(array('nid' => 29,'title' => '投资案例')),
-        'slider_school' => array(array('nid' => 9,'title' => '财经学堂'),)
+        'slider_school' => array(array('nid' => 9,'title' => '财经学堂')),
         'navTab_school_stock_fund' => array(array('nid' => 17,'title' => '股票学堂'),array('nid' => 18,'title' => '基金学堂')),
         'navTab_school_forex_bank' => array(array('nid' => 19,'title' => '外汇学堂'),array('nid' => 20,'title' => '银行学堂')),
         'navTab_school_spot_futures' => array(array('nid' => 22,'title' => '现货学堂'),array('nid' => 23,'title' => '期货学堂')),
@@ -47,7 +47,7 @@ return new \Phalcon\Config(array(
         'panel_trade_basic' => array(array('nid' => 26,'title' => '基本面分析')),
         'panel_trade_tech' => array(array('nid' => 27,'title' => '技术面分析')),
         'panel_trade_master' => array(array('nid' => 28,'title' => '大师攻略')),
-        'panel_wealth_story' => array(array('nid' => 29,'title' => '投资案例')),
+        'panel2_wealth_story' => array(array('nid' => 29,'title' => '投资案例')),
         'panel_wealth_plan' => array(array('nid' => 30,'title' => '理财规划')),
         'panel_wealth_product' => array(array('nid' => 31,'title' => '产品评测')),
         'navTab_stockSchool_basic_method' => array(array('nid' => 34,'title' => '基础知识'),array('nid' => 36,'title' => '操盘攻略')),
