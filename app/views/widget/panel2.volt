@@ -1,48 +1,7 @@
-<style>
-h3{margin:0;padding:0;}
-p{margin:0;padding:0;}
-ul{list-style:none;}
-.widget-panel2{width:360px;}
-.widget-panel2 .w-title{overflow:hidden;height:38px;float:left;line-height:38px;width:100%;background:url(/img/bg-line.png) 0 100% repeat-x;}
-.widget-panel2 .w-title .title{border-bottom:2px solid #ff0066;padding: 0 10px;}
-.widget-panel2 .w-title .title h3{font-size:16px;padding:0;margin:0;line-height:36px;}
-.widget-panel2 .w-title .seperate{border-bottom: 2px solid #fff;width: 2px;overflow: hidden;margin-top:-2px;}
-.widget-panel2 .w-title .more{padding-right: 10px;}
-
-.widget-panel2 .w-header{overflow:hidden;
-	border-bottom: 1px dotted #ff99cc;
-	padding-bottom: 12px;
-	margin: 10px 0 5px 0;
-}
-.widget-panel2 .w-header .fleft{
-	margin-left: 10px;
-	width: 80px;
-	height: 80px;
-}
-.widget-panel2 .w-header .fright{
-	width: 260px;
-}
-.widget-panel2 .w-header .fright h3{
-	font-size: 16px;
-	height: 30px;
-	line-height: 30px;
-}
-.widget-panel2 .w-header .fright p{
-	line-height: 24px;
-}
-
-.widget-panel2 ul.w-list{padding: 10px 0;}
-.widget-panel2 ul.w-list li{
-	padding-left: 5px;
-	height: 26px;
-	line-height: 26px;
-	overflow: hidden;
-}
-</style>
 
 <div class="widget widget-panel2">
 	<div class="w-title">
-		<div class="title fleft"><h3><b><a href="" target="_blank">经济时评</a></b></h3></div>
+		<div class="title fleft"><h3><b><a href="" target="_blank">{{ items[0]['title'] }}</a></b></h3></div>
 		<div class="seperate fleft">&nbsp;</div>
 		<div class="more fright"><a href="" target="_blank">更多&gt;&gt;</a></div>
 	</div>
@@ -56,11 +15,8 @@ ul{list-style:none;}
 	</div>
 	<div class="clear"></div>
 	<ul class="w-list">
-        <li><a href="" target="_blank">马云阿里巴巴上市的启示合作的力量 </a></li>
-        <li><a href="" target="_blank">黄金跌破1200预示危机爆发</a></li>
-        <li><a href="" target="_blank">阿里生态系统 不是随便可以玩的游戏 </a></li>
-        <li><a href="" target="_blank">为何建设上海自贸区是政府自身革命 </a></li>
-        <li><a href="" target="_blank">阿里巴巴的上市与抽打外资的鞭子</a></li>
-        <li><a href="" target="_blank">阿里巴巴之后再无巨头</a></li>
+		{% for value in items[0]['data'] %}
+        <li><a href="{{ value['link'] }}">{{ value['TreeData']['title'] }}</a></li>
+        {% endfor %}
 	</ul>
 </div>

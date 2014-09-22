@@ -1,11 +1,15 @@
 
+ul,h3,p{padding:0;margin:0;}
+ul{list-style:none;}
 .clear{clear: both;}
 .fleft{float:left;}
 .fright{float:right;}
+
 .xt-col-rgt{padding-left:20px;}
 .xt-col-rgt .panel{padding:20px 0 10px 0;}
-ul{padding:0;margin:0;}
 
+
+.home-right{background-color:#f6f6f6;margin-top:10px;}
 .header-top{
   height: 80px;
   width:100%;
@@ -99,6 +103,8 @@ box-shadow:0 1px 6px rgba(0, 0, 0, 0.2);z-index:998;border-top:none;}
   text-align: center;
   background-color: #ff0066;
 }
+
+.tl-nav-tab .nav-justified> li:not(.active) > a:hover{color:#fff;}
 
 @media (min-width: 768px) {
   .header-nav .nav-justified {
@@ -200,7 +206,7 @@ box-shadow:0 1px 6px rgba(0, 0, 0, 0.2);z-index:998;border-top:none;}
   margin: 10px 0;
   overflow:hidden;
 }
-.lilv{padding:10px 0;}
+.lilv{padding:0 0 10px 0;}
 .lilv th{width:50%;}
 .lilv thead tr{background-color:#ff99cc;opacity:0.9;}
 .tl-tag-list-header{padding:10px;}
@@ -346,5 +352,43 @@ a.nivo-prevNav {
 	  background-repeat: repeat-x; /* Repeat the gradient */
 	  font-size:20px;
 	  padding:5px 10px;
-	  margin: 10px 0;
+	  margin: 10px 20px 0 0;
 }
+
+.widget-panel2{width:380px;margin:10px 0;}
+.widget-panel2 .w-title{overflow:hidden;height:38px;float:left;line-height:38px;width:100%;background:url(/img/bg-line.png) 0 100% repeat-x;}
+.widget-panel2 .w-title .title{border-bottom:2px solid #ff0066;padding: 0 10px;}
+.widget-panel2 .w-title .title h3{font-size:16px;padding:0;margin:0;line-height:36px;}
+.widget-panel2 .w-title .seperate{border-bottom: 2px solid #fff;width: 2px;overflow: hidden;margin-top:-2px;}
+.widget-panel2 .w-title .more{padding-right: 10px;}
+
+.widget-panel2 .w-header{overflow:hidden;
+	border-bottom: 1px dotted #ff99cc;
+	padding-bottom: 12px;
+	margin: 10px 0 5px 0;
+}
+.widget-panel2 .w-header .fleft{
+	margin-left: 10px;
+	width: 80px;
+	height: 80px;
+}
+.widget-panel2 .w-header .fright{
+	width: 260px;
+}
+.widget-panel2 .w-header .fright h3{
+	font-size: 16px;
+	height: 30px;
+	line-height: 30px;
+}
+.widget-panel2 .w-header .fright p{
+	line-height: 24px;
+}
+
+.widget-panel2 ul.w-list{padding: 10px 0;}
+.widget-panel2 ul.w-list li{
+	padding-left: 15px;
+	height: 26px;
+	line-height: 26px;
+	overflow: hidden;
+}
+
