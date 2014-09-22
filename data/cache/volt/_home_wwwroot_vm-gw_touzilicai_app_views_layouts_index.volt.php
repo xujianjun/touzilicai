@@ -1,6 +1,6 @@
 
 <div class="row">
-    <div class="col-xs-6 col-md-4"><?php echo $this->partial('widget/slider', array('items' => $pageData['slider']['home']['items'])); ?></div>
+    <div class="col-xs-6 col-md-4"><?php echo $this->partial('widget/slider', array('blockName' => $pageData['slider']['home']['blockName'], 'items' => $pageData['slider']['home']['items'])); ?></div>
     <div class="col-xs-6 col-md-4"><?php echo $this->partial('widget/panel', array('items' => $pageData['panel']['hot']['items'])); ?></div>
 	<div class="col-xs-6 col-md-4"><?php echo $this->partial('widget/cidian', array('cidian' => $pageData['cidian'])); ?></div>
 </div>

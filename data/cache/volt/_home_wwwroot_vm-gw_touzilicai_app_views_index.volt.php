@@ -24,9 +24,11 @@
 		<script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.js"></script>
 
 		<script src="/js/tl.js"></script>
+		<?php if ($bdtongji) { ?>
 		<script type="text/javascript">
 		var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
 		document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F2f07e665934361372c1544e1591700ac' type='text/javascript'%3E%3C/script%3E"));
 		</script>
+		<?php } ?>
 	</body>
 </html>
