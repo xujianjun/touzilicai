@@ -24,10 +24,18 @@ class Tags extends Model
 							)
 						))->toArray();
 
-		$cidianClouds = array(3, 10);
+		$cidianBgs = array(1, 3);
 		foreach ($tags as $key=>$tag){
-			$cloudSize = mt_rand($cidianClouds[0], $cidianClouds[1]);
-			$tags[$key]['cloudSize'] = $cloudSize;
+			$randBg = mt_rand($cidianBgs[0], $cidianBgs[1]);
+			$tags[$key]['randBg'] = $randBg;
+		}
+		return $tags;
+	}
+
+	public static function addTagsAttr($tags){
+		foreach ($tags as $key=>$tag){
+			$tid = $tag['id'];
+			$tags[$key]['path'] = '/tag/'.$tid.'.html';
 		}
 		return $tags;
 	}

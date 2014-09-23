@@ -22,12 +22,20 @@ class ControllerBase extends Phalcon\Mvc\Controller {
 
 	public function initialize() {
 		$this->view->setTemplateAfter('main');
-		Tag::appendTitle(' - 财途网');
+		Tag::setTitle('财途网');
+		Tag::setTitleSeparator(' - ');
 
 		$this->_initLibrary();
 		$this->_initSiteConfig();
 		$this->_initParams();
 		$this->_initMenu();
+
+		$actionName = $this->dispatcher->getActionName();
+		$controllName = $this->dispatcher->getHandlerClass();
+		$dispatcher = $controllName.'-'.$actionName;
+		$this->_initPageTitle($dispatcher);
+		$this->_initMetaData($dispatcher);
+
 		$this->view->setVar("server", $_SERVER);
 		$this->view->setVar("bdtongji", true);
 	}
@@ -213,6 +221,89 @@ class ControllerBase extends Phalcon\Mvc\Controller {
 		$this->view->setVar("menus", $menus);
 	}
 
+	public function _initPageTitle($dispatcher){
+		$pageTitle = $this->_siteConfig['pageTitle'][$dispatcher];
+		switch ($dispatcher){
+			case 'PageController-xtList':
+			case 'PageController-list':
+			case 'PageController-xtSingle':
+			case 'PageController-single':
+				foreach ($this->_params['nodeParents'] as $key=>$nodeParent){
+					if ($nodeParent->lvl >= 2){
+						$pageTitle[] = $nodeParent->TreeData->title;
+					}
+				}
+				$pageTitle[] = $this->_params['node']->TreeData->title;
+				break;
+			case 'PageController-tagSingle':
+				$pageTitle[] = $this->_params['tag']->name;
+				break;
+			case 'PageController-search':
+				$kw = $this->_params['search_keyword'];
+				$pageTitle[] = $kw ? $kw : '搜索';
+				break;
+			default:
+				break;
+		}
+		foreach ($pageTitle as $value){
+			if ($value){
+				Tag::prependTitle($value);
+			}
+		}
+	}
+	public function _initMetaData($dispatcher){
+		$metaData = $this->_siteConfig['metaData'];
+		$pageMetaData = $this->_siteConfig['pageMetaData'][$dispatcher];
+		foreach ($metaData as $key=>$value){
+			$metaData[$key] = $value.$pageMetaData[$key];
+		}
+		switch ($dispatcher){
+			case 'PageController-xtList':
+			case 'PageController-list':
+				//keywords：目录，父目录，子目录
+				//desc:目录介绍
+				break;
+			case 'PageController-xtSingle':
+			case 'PageController-single':
+				//keywords：标题，标签，目录，父目录
+				//desc:摘要
+				break;
+			case 'PageController-tagSingle':
+				//keywords：名称
+				//desc:名称：注释
+				break;
+			case 'PageController-search':
+				//keywords：kw，
+				//desc:global
+				break;
+			default:
+				break;
+		}
+
+		$this->view->setVar("metaData", $metaData);
+	}
+
+
+	public function _initPageData($widgets){
+		if (!is_array($widgets)){
+			$widgetArrs[] = $widgets;
+		} else {
+			$widgetArrs = $widgets;
+		}
+		$pageData = array();
+		foreach ($widgetArrs as $widget){
+			list($view, $block) = explode('--', $widget);
+			$widgetData = $this->fetchWidgetData($view, $block);
+			if ($block){
+				$pageData[$view][$block] = $widgetData[$block];
+			} else {
+				$pageData[$view] = $widgetData;
+			}
+		}
+		$this->view->setVar("pageData", $pageData);
+		return $pageData;
+	}
+
 	public function _initBreadcrumb(){
 		$breadcrumb = '';
 		if ($this->_params['nid']){
@@ -235,25 +326,6 @@ class ControllerBase extends Phalcon\Mvc\Controller {
 			$breadcrumb = '<li><a href="/">首页</a></li>' . $breadcrumb;
 		}
 		return $breadcrumb;
-	}
-	public function _initPageData($widgets){
-		if (!is_array($widgets)){
-			$widgetArrs[] = $widgets;
-		} else {
-			$widgetArrs = $widgets;
-		}
-		$pageData = array();
-		foreach ($widgetArrs as $widget){
-			list($view, $block) = explode('--', $widget);
-			$widgetData = $this->fetchWidgetData($view, $block);
-			if ($block){
-				$pageData[$view][$block] = $widgetData[$block];
-			} else {
-				$pageData[$view] = $widgetData;
-			}
-		}
-		$this->view->setVar("pageData", $pageData);
-		return $pageData;
 	}
 
 	/*
@@ -611,37 +683,74 @@ class ControllerBase extends Phalcon\Mvc\Controller {
 				}
 				$widgetData = $nodeTags;
 				break;
-			case 'nodeSiblings':
-				$nodeSiblings = array(
-					'prev' => array('title'=>'上一篇', 'node'=>array()),
-					'next' => array('title'=>'下一篇', 'node'=>array()),
+			case 'siblings':
+				$siblings = array(
+					'prev' => array('title'=>'上一篇', 'item'=>array()),
+					'next' => array('title'=>'下一篇', 'item'=>array()),
 				);
-				if ($this->_params['node']->type == 'article'){
-					$prevNode = TreeStruct::findFirst(array(
-											'conditions' => "lft<?1 and pid=?2 and type=:type:",
-											'bind' => array(1=>$this->_params['node']->lft, 2=>$this->_params['node']->pid, 'type'=>'article'),
-											'order' => 'lft desc',
-										));
-					$nextNode = TreeStruct::findFirst(array(
-											'conditions' => "lft>?1 and pid=?2 and type=:type:",
-											'bind' => array(1=>$this->_params['node']->lft, 2=>$this->_params['node']->pid, 'type'=>'article'),
-											'order' => 'lft asc',
-										));
-					$temNodes = array('prev'=>$prevNode, 'next'=>$nextNode);
-					$nodes = array();
-					foreach ($temNodes as $key=>$temNode){
-						if ($temNode){
-							$treeData = $temNode->TreeData->toArray();
-							$nodes[$key] = $temNode->toArray();
-							$nodes[$key]['TreeData'] = $treeData;
-						}
-					}
-					$nodes = TreeStruct::addNodesAttr($nodes);
+				switch ($block){
+					case 'node':
+						if ($this->_params['node']->type == 'article'){
+							$prevNode = TreeStruct::findFirst(array(
+													'conditions' => "lft<?1 and pid=?2 and type=:type:",
+													'bind' => array(1=>$this->_params['node']->lft, 2=>$this->_params['node']->pid, 'type'=>'article'),
+													'order' => 'lft desc',
+												));
+							$nextNode = TreeStruct::findFirst(array(
+													'conditions' => "lft>?1 and pid=?2 and type=:type:",
+													'bind' => array(1=>$this->_params['node']->lft, 2=>$this->_params['node']->pid, 'type'=>'article'),
+													'order' => 'lft asc',
+												));
+							$temNodes = array('prev'=>$prevNode, 'next'=>$nextNode);
+							$nodes = array();
+							foreach ($temNodes as $key=>$temNode){
+								if ($temNode){
+									$treeData = $temNode->TreeData->toArray();
+									$nodes[$key] = $temNode->toArray();
+									$nodes[$key]['TreeData'] = $treeData;
+									$nodes[$key]['title'] = $treeData['title'];
+								}
+							}
+							$nodes = TreeStruct::addNodesAttr($nodes);
 
-					$nodeSiblings['prev']['node'] = $nodes['prev'];
-					$nodeSiblings['next']['node'] = $nodes['next'];
+							$siblings['prev']['item'] = $nodes['prev'];
+							$siblings['next']['item'] = $nodes['next'];
+						}
+						break;
+					case 'tag':
+						$siblings['prev']['title'] = '上一个';
+						$siblings['next']['title'] = '下一个';
+
+						if ($tag = $this->_params['tag']){
+							$pinyinPrefix = $tag->pinyinPrefix;
+							if (!$pinyinPrefix){
+								break;
+							}
+							$prevTag = Tags::findFirst(array(
+													'conditions' => "pinyinPrefix=:pinyin:",
+													'bind' => array('pinyin'=>$pinyinPrefix),
+													'order' => 'id desc',
+												))->toArray();
+							$nextTag = TreeStruct::findFirst(array(
+													'conditions' => "pinyinPrefix=:pinyin:",
+													'bind' => array('pinyin'=>$pinyinPrefix),
+													'order' => 'id asc',
+												))->toArray();
+							$tags = array('prev'=>$prevTag, 'next'=>$nextTag);
+							$tags = Tags::addTagsAttr($tags);
+
+							foreach ($tags as $key=>$tag){
+								$tags[$key]['title'] = $tag['name'];
+							}
+
+							$siblings['prev']['item'] = $tags['prev'];
+							$siblings['next']['item'] = $tags['next'];
+						}
+						break;
+					default:
+						break;
 				}
-				$widgetData = $nodeSiblings;
+				$widgetData[$block] = $siblings;
 				break;
 			case 'xtSidebars':
 				$pNids = array($this->_params['node']->id);

@@ -392,3 +392,10 @@ a.nivo-prevNav {
 	overflow: hidden;
 }
 
+/* tagscloud */
+#tagscloud{width:380px;height:288px;position:relative;font-size:12px;color:#333;margin:20px auto 0;text-align:center;}
+#tagscloud a{position:absolute;top:0px;left:0px;color:#333;font-family:Arial;text-decoration:none;margin:0 10px 15px 0;line-height:18px;text-align:center;font-size:12px;padding:1px 5px;display:inline-block;border-radius:3px;}
+#tagscloud a.tagbg1{background:#666;color:#fff;font-size:12px;}
+#tagscloud a.tagbg2{background:#F16E50;color:#fff;font-size:14px;}
+#tagscloud a.tagbg3{background:#006633;color:#fff;font-size:16px;}
+#tagscloud a:hover{color:#fff;background:#ff99cc;}

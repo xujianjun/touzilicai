@@ -21,10 +21,10 @@
 		<li class="nav-item <?php if ($server['REQUEST_URI'] == '/') { ?> active<?php } ?>">
 			<a href="/" class="nav-link">首页</a>
 		</li>
-		<?php $v1735845151iterator = $menus['mainMenu']; $v1735845151incr = 0; $v1735845151loop = new stdClass(); $v1735845151loop->length = count($v1735845151iterator); $v1735845151loop->index = 1; $v1735845151loop->index0 = 1; $v1735845151loop->revindex = $v1735845151loop->length; $v1735845151loop->revindex0 = $v1735845151loop->length - 1; ?><?php foreach ($v1735845151iterator as $menu) { ?><?php $v1735845151loop->first = ($v1735845151incr == 0); $v1735845151loop->index = $v1735845151incr + 1; $v1735845151loop->index0 = $v1735845151incr; $v1735845151loop->revindex = $v1735845151loop->length - $v1735845151incr; $v1735845151loop->revindex0 = $v1735845151loop->length - ($v1735845151incr + 1); $v1735845151loop->last = ($v1735845151incr == ($v1735845151loop->length - 1)); ?>
+		<?php $v18178986931iterator = $menus['mainMenu']; $v18178986931incr = 0; $v18178986931loop = new stdClass(); $v18178986931loop->length = count($v18178986931iterator); $v18178986931loop->index = 1; $v18178986931loop->index0 = 1; $v18178986931loop->revindex = $v18178986931loop->length; $v18178986931loop->revindex0 = $v18178986931loop->length - 1; ?><?php foreach ($v18178986931iterator as $menu) { ?><?php $v18178986931loop->first = ($v18178986931incr == 0); $v18178986931loop->index = $v18178986931incr + 1; $v18178986931loop->index0 = $v18178986931incr; $v18178986931loop->revindex = $v18178986931loop->length - $v18178986931incr; $v18178986931loop->revindex0 = $v18178986931loop->length - ($v18178986931incr + 1); $v18178986931loop->last = ($v18178986931incr == ($v18178986931loop->length - 1)); ?>
 		<li class="nav-item <?php if ($menu['current']) { ?> active<?php } ?>">
 			<a href="<?php echo $menu['link']; ?>" class="nav-link"><?php echo $menu['TreeData']['title']; ?></a>
-			<div class="nav-dropdown <?php if ($v1735845151loop->index > 2) { ?> nav-dropdown-align-right<?php } ?>">
+			<div class="nav-dropdown <?php if ($v18178986931loop->index > 2) { ?> nav-dropdown-align-right<?php } ?>">
 				<div class="nav-dropdown-trending">
 					<ul class="trending">
 						<?php foreach ($menu['recommendNodes'] as $recommendNode) { ?>
@@ -42,7 +42,7 @@
 				</div>
 			</div>
 		</li>
-		<?php $v1735845151incr++; } ?>
+		<?php $v18178986931incr++; } ?>
 	</ul>
 	</div>
 </div>

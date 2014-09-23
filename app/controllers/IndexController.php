@@ -4,7 +4,6 @@ use Phalcon\Tag;
 class IndexController extends ControllerBase
 {
 	public function initialize() {
-		Tag::setTitle('首页');
 		parent::initialize();
 
 		$this->_initPageData(array(
@@ -15,5 +14,7 @@ class IndexController extends ControllerBase
 								'lilv','panel2--wealth_story','panel2--wealth_plan','panel2--wealth_product',
 							));
 	}
-    public function indexAction(){}
+    public function indexAction(){
+    	$this->_initPageTitle('index-index');
+    }
 }

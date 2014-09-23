@@ -5,7 +5,7 @@ $(function(){
     e.preventDefault();
     $(this).tab('show');
   })*/
-  $('.cidian a').tagcloud();
+  //$('.cidian a').tagcloud();
   $('#slider').nivoSlider();
 
   $('.xtsidebar > ul > li > span').on('click', function(){

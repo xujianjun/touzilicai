@@ -25,7 +25,7 @@ return new \Phalcon\Config(array(
         'xtSliderNids' => '',
     ),
     'widgetCfg'	=> array(
-    	'cidianCloudNum' => 20,
+    	'cidianCloudNum' => 30,
         'tagNodesNum' => 20,
         'listItemPer' => 20,
         'blockNum' => 6,
@@ -63,5 +63,43 @@ return new \Phalcon\Config(array(
         'panel_otherSchool_insurance' => array(array('nid' => 21,'title' => '保险学堂')),
         'navTab_otherSchool_spot_futures' => array(array('nid' => 22,'title' => '现货学堂'),array('nid' => 23,'title' => '期货学堂')),
         'panel_otherSchool_gold' => array(array('nid' => 25,'title' => '黄金学堂')),
-    )
+    ),
+    'pageTitle' => array(
+		'IndexController-index' => array('首页'),
+		'PageController-xtHome' => array('财经学堂'),
+
+		'PageController-xtList' => array(),
+		'PageController-xtSingle' => array(),
+		'PageController-list' => array(),
+		'PageController-single' => array(),
+		'PageController-tagList' => array('词典'),
+		'PageController-tagSingle' => array('词典'),
+		'PageController-search' => array(),
+
+		'StaticController-about' => array('关于我们'),
+		'StaticController-contact' => array('联系我们'),
+		'StaticController-mianze' => array('免责条款'),
+		'StaticController-sitemap' => array('网站地图'),
+    ),
+    'metaData' => array(
+		'keywords' => '慧学网',
+		'description' => '国内最专业最全的财经学习网站',
+    ),
+    'pageMetaData' => array(
+		'IndexController-index' => array('keywords' => '', 'description' => ''),
+		'PageController-xtHome' => array('keywords' => '', 'description' => ''),
+
+		'PageController-xtList' => array('keywords' => '', 'description' => ''),
+		'PageController-xtSingle' => array('keywords' => '', 'description' => ''),
+		'PageController-list' => array('keywords' => '', 'description' => ''),
+		'PageController-single' => array('keywords' => '', 'description' => ''),
+		'PageController-tagList' => array('keywords' => '', 'description' => ''),
+		'PageController-tagSingle' => array('keywords' => '', 'description' => ''),
+		'PageController-search' => array('keywords' => '', 'description' => ''),
+
+		'StaticController-about' => array('keywords' => '', 'description' => ''),
+		'StaticController-contact' => array('keywords' => '', 'description' => ''),
+		'StaticController-mianze' => array('keywords' => '', 'description' => ''),
+		'StaticController-sitemap' => array('keywords' => '', 'description' => ''),
+    ),
 ));

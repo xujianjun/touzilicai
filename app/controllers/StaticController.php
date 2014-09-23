@@ -8,15 +8,15 @@ class StaticController extends ControllerBase
 		$this->_initPageData(array('cidian', 'lilv', 'listGroup--wealth_plan'));
 	}
     public function aboutAction(){
-    	Tag::setTitle('关于我们');
+    	$this->_initPageTitle('static-about');
     }
     public function contactAction(){
-    	Tag::setTitle('联系我们');
+    	$this->_initPageTitle('static-contact');
     }
     public function mianzeAction(){
-    	Tag::setTitle('免责条款');
+    	$this->_initPageTitle('static-mianze');
     }
     public function sitemapAction(){
-    	Tag::setTitle('网站地图');
+    	$this->_initPageTitle('static-sitemap');
     }
 }
