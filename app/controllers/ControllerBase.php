@@ -97,19 +97,24 @@ class ControllerBase extends Phalcon\Mvc\Controller {
 						unset($urlPathTitle[$key]);
 					}
 				}
+				reset($urlPathTitle);
 				foreach ($params['nodeParents'] as $parentNode){
 					$ptitle_en = $parentNode->TreeData->title_en;
 					if (!$ptitle_en){
 						continue;
 					}
+//					echo 'etitle:'.$ptitle_en.'<br>';
+//					echo '<pre>';print_r($urlPathTitle);echo '</pre>';
 					if ($ptitle_en == $urlPathTitle[key($urlPathTitle)]){
 						unset($urlPathTitle[key($urlPathTitle)]);
+//						echo '<pre>';print_r($urlPathTitle);echo '</pre><hr>';
 						if (count($urlPathTitle) == 0){
 							break;
 						}
 					}
 				}
 
+//				echo '<pre>';print_r($urlPathTitle);echo '</pre>';die();
 				if (count($urlPathTitle) > 0){
 					$url = $path.'/'.$params['nid'].'.html';
 					 $this->response->redirect($url, true, 301);
