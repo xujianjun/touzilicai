@@ -1,1 +1,0 @@
-<ol class="breadcrumb"><?php echo $breadcrumb; ?></ol>
