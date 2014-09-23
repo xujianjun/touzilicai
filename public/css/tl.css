@@ -8,8 +8,13 @@ ul{list-style:none;}
 .xt-col-rgt{padding-left:20px;}
 .xt-col-rgt .panel{padding:20px 0 10px 0;}
 
+.l-h-topright{padding:10px 0;}
+.l-h-left .tl-nav-tab{padding: 10px 20px 10px 0;}
+.l-h-right{background-color:#f6f6f6;margin-top:10px;}
+.l-p-right{background-color:#f6f6f6;}
+.l-p-left{padding-right:20px;}
 
-.home-right{background-color:#f6f6f6;margin-top:10px;}
+.l-p-right .panel{padding:20px 0;}
 .header-top{
   height: 80px;
   width:100%;
@@ -136,7 +141,7 @@ box-shadow:0 1px 6px rgba(0, 0, 0, 0.2);z-index:998;border-top:none;}
 }
 
 .main{
-  padding: 10px 0;
+  padding: 20px 0;
   min-height: 200px;
 }
 .main .nav-tabs.nav-justified {
@@ -144,7 +149,7 @@ box-shadow:0 1px 6px rgba(0, 0, 0, 0.2);z-index:998;border-top:none;}
 }
 .tl-nav-tab{
   width: 100%;
-  padding: 10px 20px 10px 0;
+  //padding: 10px 20px 10px 0;
 }
 .tl-nav-tab .tab-content{
   border:1px solid #ff99cc;
@@ -203,14 +208,14 @@ box-shadow:0 1px 6px rgba(0, 0, 0, 0.2);z-index:998;border-top:none;}
   padding: 10px;
   border: 1px solid #ff99cc;
   border-radius: 5px;
-  margin: 10px 0;
+  //margin: 10px 0;
   overflow:hidden;
 }
-.lilv{padding:0 0 10px 0;}
+//.lilv{padding:0 0 10px 0;}
 .lilv th{width:50%;}
 .lilv thead tr{background-color:#ff99cc;opacity:0.9;}
-.tl-tag-list-header{padding:10px;}
-.tl-tag-list-header a{padding:0 8px;}
+.tl-tag-list-header{padding:10px 25px;;background-color:#ff99cc;}
+.tl-tag-list-header a{padding:0 7px;}
 .tl-tag-list-header a.active{color:#ff0066;}
 .dailyword{padding:10px;}
 
@@ -279,7 +284,7 @@ box-shadow:0 1px 6px rgba(0, 0, 0, 0.2);z-index:998;border-top:none;}
 
 #carousel-generic{padding:10px 20px 10px 0;}
 
-.tl-nodeSiblings{padding:10px;width:100%;}
+.tl-siblings{padding:10px;width:100%;}
 
 
 .nivo-controlNav {
@@ -393,7 +398,7 @@ a.nivo-prevNav {
 }
 
 /* tagscloud */
-#tagscloud{width:380px;height:288px;position:relative;font-size:12px;color:#333;margin:20px auto 0;text-align:center;}
+#tagscloud{width:380px;height:288px;position:relative;font-size:12px;color:#333;background-color:#f6f6f6;text-align:center;}
 #tagscloud a{position:absolute;top:0px;left:0px;color:#333;font-family:Arial;text-decoration:none;margin:0 10px 15px 0;line-height:18px;text-align:center;font-size:12px;padding:1px 5px;display:inline-block;border-radius:3px;}
 #tagscloud a.tagbg1{background:#666;color:#fff;font-size:12px;}
 #tagscloud a.tagbg2{background:#F16E50;color:#fff;font-size:14px;}

@@ -156,6 +156,7 @@ class ControllerBase extends Phalcon\Mvc\Controller {
 			$temMainMenu[$key] = $temNode->toArray();
 			$temMainMenu[$key]['TreeData'] = $treeData;
 		}
+		$temMainMenu = TreeStruct::addNodesAttr($temMainMenu);
 
 		$mainMenu = array();
 		$pid = 0;
@@ -191,6 +192,7 @@ class ControllerBase extends Phalcon\Mvc\Controller {
 						$recommendNodes[$key]['TreeData'] = $treeData;
 					}
 				}
+				$recommendNodes = TreeStruct::addNodesAttr($recommendNodes);
 				$mainMenu[$value['id']]['recommendNodes'] = $recommendNodes;
 
 				//子菜单
@@ -200,7 +202,6 @@ class ControllerBase extends Phalcon\Mvc\Controller {
 				$mainMenu[$pid]['children'][$value['id']] = $value;
 			}
 		}
-		$mainMenu = TreeStruct::addNodesAttr($mainMenu);
 		$menus['mainMenu'] = $mainMenu;
 
 		//二级菜单
@@ -480,7 +481,7 @@ class ControllerBase extends Phalcon\Mvc\Controller {
 				$optRanges = array(97, 122);
 				$options = array();
 				$options[] = '0-9';
-				for($i=$optRanges[0]; $i<$optRanges[1]; $i++){
+				for($i=$optRanges[0]; $i<=$optRanges[1]; $i++){
 					$options[] = chr($i);
 				}
 				$widgetData = $options;
@@ -625,7 +626,7 @@ class ControllerBase extends Phalcon\Mvc\Controller {
 						case 'hot':
 							$nodeLists['title'] = '热门文章';
 
-							$hotNids = array(6864,6867,6884,6886,6888,6903);
+							$hotNids = $this->_siteConfig['hotNids'];
 							$hotNidsStr = implode(',', $hotNids);
 							$temNodes = TreeStruct::find(array(
 													'conditions' => "id in (".$hotNidsStr.") and type=:type:",
@@ -731,7 +732,7 @@ class ControllerBase extends Phalcon\Mvc\Controller {
 													'bind' => array('pinyin'=>$pinyinPrefix),
 													'order' => 'id desc',
 												))->toArray();
-							$nextTag = TreeStruct::findFirst(array(
+							$nextTag = Tags::findFirst(array(
 													'conditions' => "pinyinPrefix=:pinyin:",
 													'bind' => array('pinyin'=>$pinyinPrefix),
 													'order' => 'id asc',
@@ -750,7 +751,7 @@ class ControllerBase extends Phalcon\Mvc\Controller {
 					default:
 						break;
 				}
-				$widgetData[$block] = $siblings;
+				$widgetData[$block]['items'] = $siblings;
 				break;
 			case 'xtSidebars':
 				$pNids = array($this->_params['node']->id);

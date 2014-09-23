@@ -47,7 +47,7 @@ return new \Phalcon\Config(array(
         'panel_trade_master' => array(array('nid' => 28,'title' => '大师攻略')),
         'panel2_wealth_story' => array(array('nid' => 29,'title' => '投资案例')),
         'panel2_wealth_plan' => array(array('nid' => 30,'title' => '理财规划')),
-        'panel2_wealth_product' => array(array('nid' => 31,'title' => '产品评测')),
+        //'panel2_wealth_product' => array(array('nid' => 31,'title' => '产品评测')),
 
         'navTab_stockSchool_basic_method' => array(array('nid' => 34,'title' => '基础知识'),array('nid' => 36,'title' => '操盘攻略')),
         'panel_stockSchool_trade' => array(array('nid' => 35,'title' => '交易指南')),
@@ -102,4 +102,5 @@ return new \Phalcon\Config(array(
 		'StaticController-mianze' => array('keywords' => '', 'description' => ''),
 		'StaticController-sitemap' => array('keywords' => '', 'description' => ''),
     ),
+    'hotNids' => array(6864,6867,6884,6886,6888,6903),
 ));

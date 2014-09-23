@@ -231,7 +231,8 @@ class Pager {
     		$begin = $this->now_page - $plus;
     	}
     	$begin = ($begin >= 1) ? $begin : 1;
-    	$return = '总计 ' .$this->total_rows. ' 个记录分为 ' .$this->total_pages. ' 页, 当前第 ' . $this->now_page . ' 页 ';
+    	$return = '<div class="pager">';
+    	$return .= '总计 ' .$this->total_rows. ' 个记录分为 ' .$this->total_pages. ' 页, 当前第 ' . $this->now_page . ' 页 ';
     	$return .= ',每页 ';
     	$return .= '<input type="text" value="'.$this->list_rows.'" id="pageSize" size="3"> ';
     	$return .= $this->first_page()."\n";
@@ -251,6 +252,7 @@ class Pager {
     		}
         }
     	$return .= '</select>';
+    	$return .= '</div>';
     	return $return;
     }
 }

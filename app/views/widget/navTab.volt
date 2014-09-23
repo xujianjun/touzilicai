@@ -11,7 +11,7 @@
 		<div class="tab-pane fade {% if key==0 %}active in{% endif %}" id="{{ blockName }}-tab{{ key }}">
 			<ul class="tl-panel-list list-unstyled">
 				{% for value in item['data'] %}
-				<li><a href="{{ value['path'] }}">{{ value['TreeData']['title'] }}</a></li>
+				<li><a href="{{ value['link'] }}">{{ value['TreeData']['title'] }}</a></li>
 				{% endfor %}
 			</ul>
 		</div>

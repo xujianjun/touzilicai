@@ -1,4 +1,4 @@
-<div class="tl-nodeSiblings fleft">
+<div class="tl-siblings fleft">
 	<div class="prev fleft">
 	    <a href="{{ items['prev']['item']['link'] }}">{{items['prev']['title']}} : {{ items['prev']['item']['title'] }}</a>
 	</div>

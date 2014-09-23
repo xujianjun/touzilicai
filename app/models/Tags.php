@@ -35,7 +35,7 @@ class Tags extends Model
 	public static function addTagsAttr($tags){
 		foreach ($tags as $key=>$tag){
 			$tid = $tag['id'];
-			$tags[$key]['path'] = '/tag/'.$tid.'.html';
+			$tags[$key]['link'] = '/tag/'.$tid.'.html';
 		}
 		return $tags;
 	}

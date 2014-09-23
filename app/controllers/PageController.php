@@ -27,7 +27,7 @@ class PageController extends ControllerBase
     public function xtSingleAction(){
     	$this->view->disableLevel(View::LEVEL_LAYOUT);
     	$this->_initPageData(array(
-								'breadcrumb','nodetag','content--node','nodeSiblings','panel--relation',
+								'breadcrumb','nodetag','content--node','siblings--node','panel--relation',
 								'xtSidebars','panel--hot'
 							));
     	$this->_initPageTitle('page-xtSingle');

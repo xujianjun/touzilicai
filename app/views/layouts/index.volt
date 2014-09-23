@@ -2,10 +2,10 @@
 <div class="row">
     <div class="col-xs-6 col-md-4">{{ partial("widget/slider", ['blockName':pageData['slider']['home']['blockName'], 'items':pageData['slider']['home']['items']]) }}</div>
     <div class="col-xs-6 col-md-4">{{ partial("widget/panel", ['items':pageData['panel']['hot']['items']]) }}</div>
-	<div class="col-xs-6 col-md-4">{{ partial("widget/cidian", ['cidian':pageData['cidian']]) }}</div>
+	<div class="col-xs-6 col-md-4 l-h-topright">{{ partial("widget/cidian", ['cidian':pageData['cidian']]) }}</div>
 </div>
 <div class="row">
-	<div class="col-xs-12 col-md-8">
+	<div class="col-xs-12 col-md-8 l-h-left">
 		<div class="row">
 			<div class="layout-title">互联网金融</div>
 			<div class="row">
@@ -40,11 +40,10 @@
 	      	</div>
 		</div>
 	</div>
-	<div class="col-xs-6 col-md-4 home-right">
+	<div class="col-xs-6 col-md-4 l-h-right">
 		{{ partial("widget/lilv", ['lilv':pageData['lilv']]) }}
 		{{ partial("widget/panel2", ['items':pageData['panel2']['wealth_story']['items']]) }}
 		{{ partial("widget/panel2", ['items':pageData['panel2']['wealth_plan']['items']]) }}
-		{{ partial("widget/panel2", ['items':pageData['panel2']['wealth_product']['items']]) }}
 	</div>
 </div>
 

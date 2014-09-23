@@ -2,10 +2,10 @@
 <div class="row">
     <div class="col-xs-6 col-md-4"><?php echo $this->partial('widget/slider', array('blockName' => $pageData['slider']['home']['blockName'], 'items' => $pageData['slider']['home']['items'])); ?></div>
     <div class="col-xs-6 col-md-4"><?php echo $this->partial('widget/panel', array('items' => $pageData['panel']['hot']['items'])); ?></div>
-	<div class="col-xs-6 col-md-4"><?php echo $this->partial('widget/cidian', array('cidian' => $pageData['cidian'])); ?></div>
+	<div class="col-xs-6 col-md-4 l-h-topright"><?php echo $this->partial('widget/cidian', array('cidian' => $pageData['cidian'])); ?></div>
 </div>
 <div class="row">
-	<div class="col-xs-12 col-md-8">
+	<div class="col-xs-12 col-md-8 l-h-left">
 		<div class="row">
 			<div class="layout-title">互联网金融</div>
 			<div class="row">
@@ -40,11 +40,10 @@
 	      	</div>
 		</div>
 	</div>
-	<div class="col-xs-6 col-md-4 home-right">
+	<div class="col-xs-6 col-md-4 l-h-right">
 		<?php echo $this->partial('widget/lilv', array('lilv' => $pageData['lilv'])); ?>
 		<?php echo $this->partial('widget/panel2', array('items' => $pageData['panel2']['wealth_story']['items'])); ?>
 		<?php echo $this->partial('widget/panel2', array('items' => $pageData['panel2']['wealth_plan']['items'])); ?>
-		<?php echo $this->partial('widget/panel2', array('items' => $pageData['panel2']['wealth_product']['items'])); ?>
 	</div>
 </div>
 

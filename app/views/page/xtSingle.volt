@@ -4,7 +4,7 @@
 		{{ partial("widget/breadcrumb", ['breadcrumb':pageData['breadcrumb']]) }}
 		{{ partial("widget/nodetag", ['nodetag':pageData['nodetag']]) }}
 		{{ partial("widget/content", ['content':pageData['content']['node']['content']]) }}
-		{{ partial("widget/nodeSiblings", ['nodeSiblings':pageData['nodeSiblings']]) }}
+		{{ partial("widget/siblings", ['items':pageData['siblings']['node']['items']]) }}
 		{{ partial("widget/panel", ['items':pageData['panel']['relation']['items']]) }}
 	</div>
 	<div class="col-xs-6 col-md-4 xt-col-rgt">

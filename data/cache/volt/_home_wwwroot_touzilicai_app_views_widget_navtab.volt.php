@@ -11,7 +11,7 @@
 		<div class="tab-pane fade <?php if ($key == 0) { ?>active in<?php } ?>" id="<?php echo $blockName; ?>-tab<?php echo $key; ?>">
 			<ul class="tl-panel-list list-unstyled">
 				<?php foreach ($item['data'] as $value) { ?>
-				<li><a href="<?php echo $value['path']; ?>"><?php echo $value['TreeData']['title']; ?></a></li>
+				<li><a href="<?php echo $value['link']; ?>"><?php echo $value['TreeData']['title']; ?></a></li>
 				<?php } ?>
 			</ul>
 		</div>
