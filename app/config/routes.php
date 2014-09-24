@@ -79,15 +79,15 @@ $router->add("/search/", array(
 
 $router->add("/{nten:about_us}/", array(
     'controller' => 'static',
-    'action' => 'about'
+    'action' => 'content'
 ));
 $router->add("/{nten:contact_us}/", array(
     'controller' => 'static',
-    'action' => 'contact'
+    'action' => 'content'
 ));
 $router->add("/{nten:mianze}/", array(
     'controller' => 'static',
-    'action' => 'mianze'
+    'action' => 'content'
 ));
 $router->add("/{nten:sitemap}/", array(
     'controller' => 'static',

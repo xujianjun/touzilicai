@@ -7,11 +7,7 @@ class StaticController extends ControllerBase
 		parent::initialize();
 		$this->_initPageData(array('breadcrumb', 'content--static', 'cidian', 'lilv', 'panel--hot'));
 	}
-    public function aboutAction(){
-    }
-    public function contactAction(){
-    }
-    public function mianzeAction(){
+    public function contentAction(){
     }
     public function sitemapAction(){
     	$this->_initPageData(array('sitemap'));
