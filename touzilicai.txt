@@ -15,11 +15,11 @@ panel右侧padding有问题，在非首页
 有的没有链接								done
 首页菜单加上分割线
 meta title								done
-meta desc								done, untest
+meta desc								done
 tag页面的上一篇，下一篇						done
 贵金属修复，现货，保险内容					done
 产品评测暂不发布内容						deleted
-二级菜单									done, untest
+二级菜单									done
 静态页面									doing,sitemap还没好
 
 --------------------------------------
