@@ -77,19 +77,19 @@ $router->add("/search/", array(
     'action' => 'search'
 ));
 
-$router->add("/about_us/", array(
+$router->add("/{nten:about_us}/", array(
     'controller' => 'static',
     'action' => 'about'
 ));
-$router->add("/contact_us/", array(
+$router->add("/{nten:contact_us}/", array(
     'controller' => 'static',
     'action' => 'contact'
 ));
-$router->add("/mianze/", array(
+$router->add("/{nten:mianze}/", array(
     'controller' => 'static',
     'action' => 'mianze'
 ));
-$router->add("/sitemap/", array(
+$router->add("/{nten:sitemap}/", array(
     'controller' => 'static',
     'action' => 'sitemap'
 ));

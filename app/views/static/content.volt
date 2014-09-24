@@ -1,0 +1,2 @@
+{{ partial("widget/breadcrumb", ['breadcrumb':pageData['breadcrumb']]) }}
+{{ partial("widget/content", ['blockName':pageData['content']['static']['blockName'], 'content':pageData['content']['static']['content']]) }}

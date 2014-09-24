@@ -1,23 +1,26 @@
 
 
-slider改用boots的
-学堂sidebar改改
+slider改用boots的							done（无数据）
+学堂sidebar改改							done（无数据）
 增加一个widget，带图片的。放到首页右侧
-首页从2楼开始分左右2大栏
+首页从2楼开始分左右2大栏						done
+学堂首页从2楼开始分左右2大栏
 后台添加选择图片功能
-tag数据的修复
+tag数据的修复								done
 summary数据的修复
-现货，保险产品评测数据
+现货，保险产品评测数据						done
 csz使用后台总是乱码，但dzh用的时候就没问题
 panel右侧padding有问题，在非首页
-热门标签（添加头，填满）
-有的没有链接
+热门标签（居中）
+有的没有链接								done
 首页菜单加上分割线
-meta title			done 	untest
-meta desc			done	还没数据
-tag页面的上一篇，下一篇
-贵金属修复，现货，保险内容	done
-产品评测暂不发布内容
+meta title								done
+meta desc								done
+tag页面的上一篇，下一篇						done
+贵金属修复，现货，保险内容					done
+产品评测暂不发布内容						deleted
+二级菜单									done, untest
+静态页面									内容添加完，程序doing
 
 --------------------------------------
 网站颜色：

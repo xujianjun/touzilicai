@@ -15,6 +15,5 @@ class IndexController extends ControllerBase
 							));
 	}
     public function indexAction(){
-    	$this->_initPageTitle('index-index');
     }
 }

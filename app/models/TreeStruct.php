@@ -23,13 +23,17 @@ class TreeStruct extends Model
 						'bind'=>array(1=>$node['lft'], 2=>$node['rgt'], 'type'=>'default'),
 						'order'=>'lvl',
 					));
+		$relations['sibling'] = self::find(array(
+						'conditions'=>'pid=?1 and type=:type:',
+						'bind'=>array(1=>$node['pid'], 'type'=>'default'),
+						'order'=>'lft',
+					));
 		return $relations;
 	}
 
 	public static function addNodesAttr($nodes, $options=array()){
 		$defaultOptions = array('link'=>true, 'menu'=>false, 'menuLevel'=>0);
 		$options = array_merge($defaultOptions, $options);
-
 		foreach ($nodes as $key=>$node){
 			$nid = $node['id'];
 			$relationTreeNodes = self::findRelationTrees($node);

@@ -214,12 +214,19 @@ box-shadow:0 1px 6px rgba(0, 0, 0, 0.2);z-index:998;border-top:none;}
 //.lilv{padding:0 0 10px 0;}
 .lilv th{width:50%;}
 .lilv thead tr{background-color:#ff99cc;opacity:0.9;}
+
+.tl-list-header{padding:10px 20px;background-color:#f6f6f6;}
+.tl-list-header a{padding-right:10px;}
+.tl-list-header a.active,.tl-list-header a:hover{color:#ff0066;}
+
 .tl-tag-list-header{padding:10px 25px;;background-color:#ff99cc;}
 .tl-tag-list-header a{padding:0 7px;}
 .tl-tag-list-header a.active{color:#ff0066;}
 .dailyword{padding:10px;}
 
+
 .content_title{padding:0 10px 10px;border-bottom:1px dotted #ff99cc;}
+.static-content .content_title{text-align:center;letter-spacing:5px;}
 .content_body{padding:0 0px 20px 0;;line-height:25px;text-indent:25px;}
 
 .tl-tag-list ul{line-height:30px;}

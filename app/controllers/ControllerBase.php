@@ -18,7 +18,7 @@ class ControllerBase extends Phalcon\Mvc\Controller {
 
 	public $_siteConfig;
 	public $_params;
-	public $_menus;
+	public $_pageData;
 
 	public function initialize() {
 		$this->view->setTemplateAfter('main');
@@ -56,10 +56,11 @@ class ControllerBase extends Phalcon\Mvc\Controller {
 	public function _initParams(){
 		$params = array();
 		if ($this->_demo){
-			$params['nid'] = 6866;
-			$params['tid'] = 1;
+			$params['nid'] = 0;
+			$params['tid'] = 0;
+			$nten = 'about_us';
 			$params['p'] = $params['p'] ? $params['p'] : 1;
-			$params['tagPrefix'] = 'a';
+			$params['tagPrefix'] = '';
 
 			$params['search_keyword'] = '';
 		} else {
@@ -79,6 +80,7 @@ class ControllerBase extends Phalcon\Mvc\Controller {
 			$relationTreeNodes = TreeStruct::findRelationTrees($node);
 			$params['nodeParents'] = $relationTreeNodes['parent'];
 			$params['nodeChilds'] = $relationTreeNodes['child'];
+			$params['nodeSiblings'] = $relationTreeNodes['sibling'];
 			$path = '';
 			foreach ($params['nodeParents'] as $parentNode){
 				$ptitle_en = $parentNode->TreeData->title_en;
@@ -123,6 +125,7 @@ class ControllerBase extends Phalcon\Mvc\Controller {
 				}
 			}
 		}
+
 		if (!$params['nid'] && ($nten || $nten2)){
 			$ntitleEn = $nten2 ? $nten2 : $nten;
 			$nData = TreeData::findFirst(array(
@@ -136,13 +139,13 @@ class ControllerBase extends Phalcon\Mvc\Controller {
 			$relationTreeNodes = TreeStruct::findRelationTrees($node);
 			$params['nodeParents'] = $relationTreeNodes['parent'];
 			$params['nodeChilds'] = $relationTreeNodes['child'];
+			$params['nodeSiblings'] = $relationTreeNodes['sibling'];
 		}
-
 		if ($params['tid']){
 			$tag = Tags::findFirst($params['tid']);
 			$params['tag'] = $tag;
 		}
-//		echo '<pre>';print_r($params);echo '</pre>';die();
+//		echo '<pre>';print_r($params['node']->toArray());echo '</pre>';die();
 		$this->_params = $params;
 		$this->view->setVar("params", $params);
 	}
@@ -228,7 +231,7 @@ class ControllerBase extends Phalcon\Mvc\Controller {
 		}
 		$secMenu = TreeStruct::addNodesAttr($secMenu);
 		$menus['secMenu'] = $secMenu;
-//		echo '<pre>';print_r($menus);echo '</pre>';die();
+
 		$this->view->setVar("menus", $menus);
 	}
 
@@ -263,34 +266,55 @@ class ControllerBase extends Phalcon\Mvc\Controller {
 		}
 	}
 	public function _initMetaData($dispatcher){
-		$metaData = $this->_siteConfig['metaData'];
-		$pageMetaData = $this->_siteConfig['pageMetaData'][$dispatcher];
-		foreach ($metaData as $key=>$value){
-			$metaData[$key] = $value.$pageMetaData[$key];
-		}
+		$defaultMetaData = $this->_siteConfig['defaultMetaData'];
+		$metaData = $this->_siteConfig['pageMetaData'][$dispatcher];
+
+		$keywords = $description = '';
 		switch ($dispatcher){
 			case 'PageController-xtList':
 			case 'PageController-list':
-				//keywords：目录，父目录，子目录
-				//desc:目录介绍
+				$keywords = $this->_params['node']->TreeData->title;
+				foreach ($this->_params['nodeChilds'] as $nodeChild){
+					$keywords .= ','. $nodeChild->TreeData->title;
+				}
+				foreach ($this->_params['nodeParents'] as $nodeParent){
+					$keywords .= ','. $nodeParent->TreeData->title;
+				}
+
 				break;
 			case 'PageController-xtSingle':
 			case 'PageController-single':
-				//keywords：标题，标签，目录，父目录
-				//desc:摘要
+				$keywords = $this->_params['node']->TreeData->title;
+				foreach ($this->_params['nodeChilds'] as $nodeChild){
+					$keywords .= ','. $nodeChild->TreeData->title;
+				}
+				$nodeTags = NodeTags::find(array(
+								'conditions' => 'nid=?1',
+								'bind' => array(1=>$this->_params['node']->id),
+							));
+				foreach ($nodeTags as $nodeTag){
+					$keywords .= ','. $nodeTag->Tags->name;
+				}
+				foreach ($this->_params['nodeParents'] as $nodeParent){
+					$keywords .= ','. $nodeParent->TreeData->title;
+				}
+				$description = $this->_params['node']->TreeData->summary;
 				break;
 			case 'PageController-tagSingle':
-				//keywords：名称
-				//desc:名称：注释
+				$keywords = $this->_params['tag']->name;
+				$description = $this->_params['tag']->name.':'.$this->_params['tag']->description;
 				break;
 			case 'PageController-search':
-				//keywords：kw，
-				//desc:global
+				$keywords = $this->_params['search_keyword'];
 				break;
 			default:
 				break;
 		}
 
+		$metaData['keywords'] = $keywords ? $keywords.'，'.$metaData['keywords'] : $metaData['keywords'];
+		$metaData['keywords'] = $metaData['keywords'] ? $metaData['keywords'].'，'.$defaultMetaData['keywords'] : $defaultMetaData['keywords'];
+		$metaData['description'] = $description ? $description : $metaData['description'];
+		$metaData['description'] = $metaData['description'] ? $metaData['description'] : $defaultMetaData['description'];
 		$this->view->setVar("metaData", $metaData);
 	}
 
@@ -301,18 +325,17 @@ class ControllerBase extends Phalcon\Mvc\Controller {
 		} else {
 			$widgetArrs = $widgets;
 		}
-		$pageData = array();
 		foreach ($widgetArrs as $widget){
 			list($view, $block) = explode('--', $widget);
 			$widgetData = $this->fetchWidgetData($view, $block);
 			if ($block){
-				$pageData[$view][$block] = $widgetData[$block];
+				$this->_pageData[$view][$block] = $widgetData[$block];
 			} else {
-				$pageData[$view] = $widgetData;
+				$this->_pageData[$view] = $widgetData;
 			}
 		}
-		$this->view->setVar("pageData", $pageData);
-		return $pageData;
+		$this->view->setVar("pageData", $this->_pageData);
+		return $this->_pageData;
 	}
 
 	public function _initBreadcrumb(){
@@ -444,6 +467,20 @@ class ControllerBase extends Phalcon\Mvc\Controller {
 						$content = Tags::findFirst($this->_params['tid'])->toArray();
 						$content['content'] = htmlspecialchars_decode($content['description']);
 						$content['title'] = $content['name'];
+						$widgetData[$block]['content'] = $content;
+						break;
+					case 'static':
+						$static_content = TreeStruct::findFirst(array(
+										"conditions" => "pid = ?1",
+										"bind"       => array(1 => $this->_params['nid']),
+										'order' 	=> 'lft asc',
+									));
+						$content = array();
+						if ($static_content){
+							$content['title'] = $static_content->TreeData->title;
+							$content['content'] = htmlspecialchars_decode($static_content->TreeData->content);
+						}
+						$widgetData[$block]['blockName'] = $block;
 						$widgetData[$block]['content'] = $content;
 						break;
 					default:
@@ -680,7 +717,6 @@ class ControllerBase extends Phalcon\Mvc\Controller {
 			case 'breadcrumb':
 				$widgetData = $this->_initBreadcrumb();
 				break;
-
 			case 'nodetag':
 				$temNodeTags = NodeTags::find(array(
 								'conditions' => 'nid=?1',
@@ -771,6 +807,24 @@ class ControllerBase extends Phalcon\Mvc\Controller {
 				$xtSidebars = TreeStruct::getXtSidebars($pNids);
 				$widgetData = $xtSidebars;
 				break;
+			case 'list_header':
+				$list_header = array();
+				$temNodes = count($this->_params['nodeChilds']) ? $this->_params['nodeChilds'] : $this->_params['nodeSiblings'];
+				if ($temNodes){
+					foreach ($temNodes as $key=>$temNode){
+						$treeData = $temNode->TreeData->toArray();
+						$list_header[$key] = $temNode->toArray();
+						$list_header[$key]['TreeData'] = $treeData;
+
+						$list_header[$key]['current'] = false;
+						if ($this->_params['node']->id == $temNode->id){
+							$list_header[$key]['current'] = true;
+						}
+					}
+					$list_header = TreeStruct::addNodesAttr($list_header);
+				}
+				$widgetData = $list_header;
+				break;
 			case 'search_header':
 				$search_result = array();
 				$search_result['search_keyword'] = $this->_params['search_keyword'];
@@ -781,6 +835,10 @@ class ControllerBase extends Phalcon\Mvc\Controller {
 				}
 
 				$widgetData = $search_result;
+				break;
+			case 'sitemap':
+				$sitemap = array();
+				$widgetData = $sitemap;
 				break;
 			case 'test':
 				$result = 'test';

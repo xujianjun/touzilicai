@@ -5,7 +5,7 @@
 	</div>
     <div class="col-xs-6 col-md-4 l-p-right">
     	{{ partial("widget/cidian", ['cidian':pageData['cidian']]) }}
+    	{{ partial("widget/panel", ['items':pageData['panel']['hot']['items']]) }}
     	{{ partial("widget/lilv", ['lilv':pageData['lilv']]) }}
-    	{{ partial("widget/listGroup", ['items':pageData['listGroup']['wealth_plan']['items']]) }}
 	</div>
 </div>
