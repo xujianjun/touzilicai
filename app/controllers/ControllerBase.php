@@ -126,8 +126,8 @@ class ControllerBase extends Phalcon\Mvc\Controller {
 			}
 		}
 
-		if (!$params['nid'] && ($nten || $nten2)){
-			$ntitleEn = $nten2 ? $nten2 : $nten;
+		if (!$params['nid'] && ($nten || $nten2 || $nten3)){
+			$ntitleEn = $nten3 ? $nten3 : ($nten2 ? $nten2 : $nten);
 			$nData = TreeData::findFirst(array(
 								'conditions' => "title_en = :ntitleEn:",
 								'bind' => array('ntitleEn'=>$ntitleEn)

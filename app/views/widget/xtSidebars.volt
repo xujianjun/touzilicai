@@ -7,7 +7,7 @@
 			{% if xtSidebar['children']|length %}
 			<ul class="list-unstyled sub-list {% if xtSidebar['current'] %}active{% endif %}">
 				{% for value in xtSidebar['children'] %}
-				<li><a href="{{ value['link'] }}" {% if value['current'] %}class="active"{% endif %}>{{ value['TreeData']['title']|trim }}</a></li>
+				<li {% if value['current'] %}class="active"{% endif %}><a href="{{ value['link'] }}">{{ value['TreeData']['title']|trim }}</a></li>
 				{% endfor %}
 			</ul>
 			{% endif %}
