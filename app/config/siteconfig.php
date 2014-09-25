@@ -30,6 +30,19 @@ return new \Phalcon\Config(array(
         'listItemPer' => 20,
         'blockNum' => 6,
     ),
+    'slider' => array(
+		'home' => array(
+			array('title'=>'', 'img_path'=>'', 'link'=>'', 'alt'=>''),
+			array('title'=>'', 'img_path'=>'', 'link'=>'', 'alt'=>''),
+			array('title'=>'', 'img_path'=>'', 'link'=>'', 'alt'=>''),
+		),
+		'school' => array(
+			array('title'=>'', 'img_path'=>'', 'link'=>'', 'alt'=>''),
+			array('title'=>'', 'img_path'=>'', 'link'=>'', 'alt'=>''),
+			array('title'=>'', 'img_path'=>'', 'link'=>'', 'alt'=>''),
+			array('title'=>'', 'img_path'=>'', 'link'=>'', 'alt'=>''),
+		),
+	),
     'blockCfg'	=> array(
     	'slider_home' => array(array('nid' => 29,'title' => '投资案例')),
         'slider_school' => array(array('nid' => 9,'title' => '财经学堂')),

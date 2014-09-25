@@ -93,5 +93,9 @@ $router->add("/{nten:sitemap}/", array(
     'controller' => 'static',
     'action' => 'sitemap'
 ));
+$router->add("/notfound/", array(
+    'controller' => 'static',
+    'action' => 'notfound'
+));
 
 return $router;

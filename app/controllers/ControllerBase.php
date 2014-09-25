@@ -18,6 +18,7 @@ class ControllerBase extends Phalcon\Mvc\Controller {
 
 	public $_siteConfig;
 	public $_params;
+	public $_menus;
 	public $_pageData;
 
 	public function initialize() {
@@ -172,7 +173,7 @@ class ControllerBase extends Phalcon\Mvc\Controller {
 		$temMainMenu = TreeStruct::addNodesAttr($temMainMenu);
 
 		$mainMenu = array();
-		$pid = 0;
+		$pid = $pid2 = 0;
 		$plvl = $mainMenuRootNode->lvl + 1;
 		foreach ($temMainMenu as $key=>$value){
 			if ($value['lvl'] == $plvl){
@@ -212,7 +213,10 @@ class ControllerBase extends Phalcon\Mvc\Controller {
 				$mainMenu[$value['id']]['children'] = array();
 				$pid = $value['id'];
 			} elseif ($value['lvl'] == $plvl+1){
+				$pid2 = $value['id'];
 				$mainMenu[$pid]['children'][$value['id']] = $value;
+			} elseif ($value['lvl'] == $plvl+2){
+				$mainMenu[$pid]['children'][$pid2]['children'][] = $value;
 			}
 		}
 		$menus['mainMenu'] = $mainMenu;
@@ -232,6 +236,7 @@ class ControllerBase extends Phalcon\Mvc\Controller {
 		$secMenu = TreeStruct::addNodesAttr($secMenu);
 		$menus['secMenu'] = $secMenu;
 
+		$this->_menus = $menus;
 		$this->view->setVar("menus", $menus);
 	}
 
@@ -386,67 +391,10 @@ class ControllerBase extends Phalcon\Mvc\Controller {
 		switch ($view){
 			case 'slider': //理财故事
 			case 'btslider':
-				$widgetData[$block]['blockName'] = $block;
-				switch ($block){
-					case 'home':
-						$widgetData[$block]['items'] = array(
-									array(
-										'title' => '<strong>This1</strong> is an example of a <em>HTML</em> caption with <a href="#">a link</a>.',
-										'img_path' => '/img/slider/toystory_358-287.jpg',
-										'link' => '/slider1.html',
-										'alt' => ''
-									),
-									array(
-										'title' => '<strong>This2</strong> is an example of a <em>HTML</em> caption with <a href="#">a link</a>.',
-										'img_path' => '/img/slider/up_358-287.jpg',
-										'link' => '/slider2.html',
-										'alt' => ''
-									),
-									array(
-										'title' => '<strong>This3</strong> is an example of a <em>HTML</em> caption with <a href="#">a link</a>.',
-										'img_path' => '/img/slider/walle_358-287.jpg',
-										'link' => '/slider3.html',
-										'alt' => ''
-									),
-									array(
-										'title' => '<strong>This4</strong> is an example of a <em>HTML</em> caption with <a href="#">a link</a>.',
-										'img_path' => '/img/slider/nemo_358-287.jpg',
-										'link' => '/slider4.html',
-										'alt' => ''
-									),
-								);
-						break;
-					case 'school':
-						$widgetData[$block]['items'] = array(
-									array(
-										'title' => '<strong>This1</strong> is an example of a <em>HTML</em> caption with <a href="#">a link</a>.',
-										'img_path' => '/img/slider/toystory.jpg',
-										'link' => '/slider1.html',
-										'alt' => ''
-									),
-									array(
-										'title' => '<strong>This2</strong> is an example of a <em>HTML</em> caption with <a href="#">a link</a>.',
-										'img_path' => '/img/slider/up.jpg',
-										'link' => '/slider2.html',
-										'alt' => ''
-									),
-									array(
-										'title' => '<strong>This3</strong> is an example of a <em>HTML</em> caption with <a href="#">a link</a>.',
-										'img_path' => '/img/slider/walle.jpg',
-										'link' => '/slider3.html',
-										'alt' => ''
-									),
-									array(
-										'title' => '<strong>This4</strong> is an example of a <em>HTML</em> caption with <a href="#">a link</a>.',
-										'img_path' => '/img/slider/nemo.jpg',
-										'link' => '/slider4.html',
-										'alt' => ''
-									),
-								);
-						break;
-					default:
-						break;
-				}
+				$widgetData[$block] = array(
+					'blockName' => $block,
+					'items' => $this->_siteConfig['slider'][$block]
+				);
 				break;
 			case 'dailyword':
 				$dailyword['title'] = '天天词汇';
@@ -838,7 +786,25 @@ class ControllerBase extends Phalcon\Mvc\Controller {
 				break;
 			case 'sitemap':
 				$sitemap = array();
+
+				$sitemap['menus'] = $this->_menus;
+				$allTags = array();
+				$temTags = Tags::find(array(
+											'conditions' => "",
+											'order' => 'pinyinPrefix',
+										))->toArray();
+				$temTags = Tags::addTagsAttr($temTags);
+				foreach ($temTags as $key=>$temTag){
+					$pinyinKey = $temTag['pinyinPrefix'] ? trim($temTag['pinyinPrefix']) : '0-9';
+					$allTags[$pinyinKey][] = $temTag;
+				}
+				unset($temTags);
+				$sitemap['tags'] = $allTags;
+//				echo '<pre>';print_r($sitemap);echo '</pre>';die();
 				$widgetData = $sitemap;
+				break;
+			case 'notfound':
+				$widgetData = '';
 				break;
 			case 'test':
 				$result = 'test';

@@ -14,6 +14,7 @@ mysql_select_db('touzilicai', $lnk) or die ('Can\'t use foo : ' . mysql_error())
 mysql_query("set names utf8");
 
 $rows = array();
+//$sql:select td.* from tree_data td inner join tree_struct ts on td.id=ts.id where ts.type="article" and td.summary is NULL order by td.id
 $sql = 'select td.* from tree_data td ' .
 		'inner join tree_struct ts on td.id=ts.id ' .
 		'where ts.type="article" and td.summary is NULL ' .

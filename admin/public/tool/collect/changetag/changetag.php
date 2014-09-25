@@ -19,6 +19,7 @@ while ($tag_row = mysql_fetch_assoc($tag_result)){
 	$tag_rows[$tag_row['id']] = $tag_row;
 }
 
+//sql:select td.*,ts.* from tree_data td left join node_tags nt on td.id=nt.nid left join tree_struct ts on td.id=ts.id where ts.type="article" and nt.nid is null order by td.id
 $selSql = 'select td.*,ts.* from tree_data td ' .
 		'left join node_tags nt on td.id=nt.nid ' .
 		'left join tree_struct ts on td.id=ts.id ' .

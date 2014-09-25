@@ -417,3 +417,13 @@ a.nivo-prevNav {
 #tagscloud a.tagbg2{background:#F16E50;color:#fff;font-size:14px;}
 #tagscloud a.tagbg3{background:#006633;color:#fff;font-size:16px;}
 #tagscloud a:hover{color:#fff;background:#ff99cc;}
+
+
+.sitemap h3{padding:10px 0;font-weight:bold;}
+.sitemap-lvl1{
+	line-height: 25px;
+}
+.sitemap-lvl1 h2{border-bottom: 1px solid #ff0066;padding: 10px 20px;}
+.sitemap-lvl2{padding:10px 0;border-bottom:1px dashed #ff99cc;}
+.sitemap-lvl2 a,.sitemap-lvl3 a{padding-right:10px;}
+

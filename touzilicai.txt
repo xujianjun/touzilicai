@@ -2,26 +2,27 @@
 
 slider改用boots的							done（无数据）
 学堂sidebar改改							done（无数据）
-增加一个widget，带图片的。放到首页右侧
-首页从2楼开始分左右2大栏						done
-学堂首页从2楼开始分左右2大栏
-后台添加选择图片功能
-tag数据的修复								done
-summary数据的修复
+增加一个widget，带图片的。放到首页右侧			done，适用财富生活，暂无数据
+首页从2楼开始分左右2大栏						done,右侧无数据
+学堂首页从2楼开始分左右2大栏					done,右侧无数据
+后台添加选择图片功能						cancel
+tag数据的修复								done， 170个没有tag的node article
+summary数据的修复							done, 2000+个无数据的
 现货，保险产品评测数据						done
 csz使用后台总是乱码，但dzh用的时候就没问题
-panel右侧padding有问题，在非首页
+panel右侧padding有问题，在非首页				done
 热门标签（居中）
 有的没有链接								done
-首页菜单加上分割线
+首页菜单加上分割线							done
 meta title								done
 meta desc								done
 tag页面的上一篇，下一篇						done
 贵金属修复，现货，保险内容					done
 产品评测暂不发布内容						deleted
 二级菜单									done
-静态页面									doing,sitemap还没好
-
+静态页面									doing
+sitemap									done
+404										done,页面要进一步处理
 --------------------------------------
 网站颜色：
 #ff0066 深红，头部背景
